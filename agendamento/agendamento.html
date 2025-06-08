@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho</title>
+     <link rel="stylesheet" href="agendamento.css"/>
+    
+</head>
+<body>
+    <header class="site-header">
+  <div class="container">
+    <h1 class="logo">Pet Shop</h1>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="vacinas.html">Vacinas</a>
+      <a href="carrinho.html">Carrinho</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </div>
+</header>
+    <h1>Carrinho</h1>
+
+  <div class="vacina">
+    <label><input type="radio" name="vacina" value="V10"> V10 - Protege contra 10 doenças (R$80)</label>
+  </div>
+
+  <div class="vacina">
+    <label><input type="radio" name="vacina" value="V5"> Quíntupla Felina (V5) - Previne várias doenças (R$80)</label>
+  </div>
+
+  <div class="vacina">
+    <label><input type="radio" name="vacina" value="Antirrábica"> Antirrábica - Contra raiva (R$60)</label>
+  </div>
+
+  <div id="agendamento">
+    <label for="data">Data:</label>
+    <input type="date" id="data" required>
+
+    <label for="hora">Hora:</label>
+    <input type="time" id="hora" required>
+
+    <button onclick="confirmarAgendamento()">Confirmar Agendamento</button>
+
+    <div id="resumo"></div>
+  </div>
+
+    <script src="agendamento.js"></script>
+</body>
+</html>
