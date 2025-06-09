@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
 
-// Configuração Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBTghhMKFHgiWtumkLdjlyuohlR__yzEag",
   authDomain: "cva-controle-de-vac-de-animais.firebaseapp.com",
@@ -15,11 +14,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-// Importa compatibilidade com Auth e Database
 import "https://www.gstatic.com/firebasejs/9.8.1/firebase-database-compat.js";
 import "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth-compat.js";
 
-// Elementos da página
 const botaoEmailSenha = document.getElementById("authEmailSenha");
 const botaoGoogle = document.getElementById("authGoogle");
 const cadastrar = document.getElementById("cadastrar");
@@ -51,7 +48,7 @@ botaoEmailSenha.addEventListener("click", function () {
         throw new Error("Esse usuário não é um tutor.");
       }
 
-      mensagem.innerText = "Bem-vindo, " + usuario.nome;
+      window.location.href = "../../tutor/telainicial.html";
     })
     .catch((error) => {
       console.error(error.code, error.message);
@@ -101,7 +98,7 @@ botaoGoogle.addEventListener("click", function () {
         throw new Error("Esse usuário não é um tutor.");
       }
 
-      mensagem.innerText = "Bem-vindo, " + usuario.nome;
+      window.location.href = "../../tutor/telainicial.html";
     })
     .catch((error) => {
       console.error(error.code, error.message);

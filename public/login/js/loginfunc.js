@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
 
-// Configuração Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBTghhMKFHgiWtumkLdjlyuohlR__yzEag",
   authDomain: "cva-controle-de-vac-de-animais.firebaseapp.com",
@@ -18,7 +17,6 @@ const app = initializeApp(firebaseConfig);
 import "https://www.gstatic.com/firebasejs/9.8.1/firebase-database-compat.js";
 import "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth-compat.js";
 
-// Elementos da página
 const botaoEmailSenha = document.getElementById("authEmailSenha");
 const email = document.getElementById("email");
 const senha = document.getElementById("senha");
@@ -48,7 +46,7 @@ botaoEmailSenha.addEventListener("click", function () {
         throw new Error("Esse usuário não é um funcionário.");
       }
 
-      // Login validado com sucesso
+      // Apenas até a tela de funcionario ser desenvolvida
       mensagem.innerText = "Bem-vindo, " + usuario.nome;
       console.log("Login como funcionário OK");
     })
