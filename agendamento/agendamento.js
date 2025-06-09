@@ -15,4 +15,7 @@
       }
 
       resumo.innerText = `✅ Vacina: ${vacinaSelecionada.value} agendada para ${data} às ${hora}`;
+    clear(data.value);
+  clear(hora.value);
+  
     }
