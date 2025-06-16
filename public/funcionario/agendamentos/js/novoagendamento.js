@@ -5,14 +5,12 @@ import {
   push,
   set,
   get,
-  child,
 } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
 import {
   getAuth,
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js";
 
-// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyBTghhMKFHgiWtumkLdjlyuohlR__yzEag",
   authDomain: "cva-controle-de-vac-de-animais.firebaseapp.com",
@@ -31,16 +29,42 @@ const auth = getAuth(app);
 const animalSelect = document.getElementById("animal");
 const vacinaSelect = document.getElementById("vacina");
 const botaoCadastro = document.getElementById("botaoConfirmar");
+const resumo = document.getElementById("resumo");
+const redirecionamento = document.getElementById("redirecionamento");
+
+const params = new URLSearchParams(window.location.search);
+const uidTutor = params.get("uidTutor");
+
 let tiposVacinasDisponiveis = {};
+
+if (!uidTutor) {
+  alert("Tutor não especificado na URL.");
+  window.location.href = "../telainicialfuncionario.html";
+}
+
 onAuthStateChanged(auth, (user) => {
   if (!user) {
-    alert("Você precisa estar logado para agendar.");
-    window.location.href = "../../login/logintutor.html";
+    alert("Você precisa estar logado como funcionário.");
+    window.location.href = "../../login/loginfuncionario.html";
     return;
   }
 
+  function carregarVacinas() {
+    const vacinasRef = ref(database, "tiposVacinas");
+
+    get(vacinasRef)
+      .then((snapshot) => {
+        tiposVacinasDisponiveis = snapshot.val() || {};
+        vacinaSelect.innerHTML = `<option value="">Selecione um animal primeiro</option>`;
+      })
+      .catch((error) => {
+        console.error("Erro ao carregar vacinas:", error);
+        vacinaSelect.innerHTML = `<option value="">Erro ao carregar vacinas</option>`;
+      });
+  }
+
   function carregarAnimais() {
-    const animaisRef = ref(database, "animais/" + user.uid);
+    const animaisRef = ref(database, "animais/" + uidTutor);
 
     get(animaisRef)
       .then((snapshot) => {
@@ -53,9 +77,9 @@ onAuthStateChanged(auth, (user) => {
 
         animalSelect.innerHTML = `<option value="">Selecione um animal</option>`;
 
-        Object.entries(dados).forEach(([animalId, animal]) => {
+        Object.entries(dados).forEach(([id, animal]) => {
           const option = document.createElement("option");
-          option.value = animalId;
+          option.value = id;
           option.textContent = animal.nome;
           option.setAttribute("data-nome", animal.nome);
           option.setAttribute(
@@ -68,19 +92,6 @@ onAuthStateChanged(auth, (user) => {
       .catch((error) => {
         console.error("Erro ao carregar animais:", error);
         animalSelect.innerHTML = `<option value="">Erro ao carregar animais</option>`;
-      });
-  }
-
-  function carregarVacinas() {
-    const vacinasRef = ref(database, "tiposVacinas");
-    get(vacinasRef)
-      .then((snapshot) => {
-        tiposVacinasDisponiveis = snapshot.val() || {};
-        vacinaSelect.innerHTML = `<option value="">Selecione um animal primeiro</option>`;
-      })
-      .catch((error) => {
-        console.error("Erro ao carregar vacinas:", error);
-        vacinaSelect.innerHTML = `<option value="">Erro ao carregar vacinas</option>`;
       });
   }
 
@@ -114,28 +125,30 @@ onAuthStateChanged(auth, (user) => {
       vacinaSelect.innerHTML = `<option value="">Nenhuma vacina disponível para ${especie}</option>`;
     }
   });
+
   carregarVacinas();
   carregarAnimais();
 
   botaoCadastro.addEventListener("click", () => {
     const vacinaSelecionada = vacinaSelect.options[vacinaSelect.selectedIndex];
     const vacinaNome = vacinaSelecionada?.getAttribute("data-nome") || "";
+
     const animalId = animalSelect.value;
     const selectedOption = animalSelect.options[animalSelect.selectedIndex];
     const animalNome = selectedOption?.getAttribute("data-nome") || "";
+
     const data = document.getElementById("data").value;
     const hora = document.getElementById("hora").value;
     const veterinario = document.getElementById("veterinario").value;
-    const resumo = document.getElementById("resumo");
-    const redirecionamento = document.getElementById("redirecionamento");
 
     try {
-      if (!vacinaSelecionada) throw new Error("Selecione uma vacina.");
-      if (!animalId) throw new Error("Selecione um animal.");
+      if (!vacinaSelecionada || !vacinaNome)
+        throw new Error("Selecione uma vacina.");
+      if (!animalId || !animalNome) throw new Error("Selecione um animal.");
       if (!data || !hora) throw new Error("Preencha data e hora.");
       if (!veterinario) throw new Error("Selecione um veterinário.");
 
-      const agendamentoRef = push(ref(database, `agendamentos/${user.uid}`));
+      const agendamentoRef = push(ref(database, `agendamentos/${uidTutor}`));
 
       const novoAgendamento = {
         idAnimal: animalId,
@@ -145,18 +158,19 @@ onAuthStateChanged(auth, (user) => {
         hora,
         veterinario,
         criadoEm: new Date().toISOString(),
+        criadoPor: user.uid,
       };
 
       set(agendamentoRef, novoAgendamento)
         .then(() => {
           resumo.innerText = `✅ Agendamento confirmado:
-                          Vacina: ${vacinaNome}
-                           Animal: ${animalNome}
-                           Veterinário: ${veterinario}
-                           Data: ${data}
-                           Hora: ${hora}`;
-          redirecionamento.innerHTML =
-            "<a href='../agendamento/visualizaragendamentos.html' class='text-blue me-3'>Visualizar Agendamento</a>";
+                            Vacina: ${vacinaNome}
+                            Animal: ${animalNome}
+                            Veterinário: ${veterinario}
+                            Data: ${data}
+                            Hora: ${hora}`;
+
+          redirecionamento.innerHTML = `<a href='../agendamento/agendamentos.html?uidTutor=${uidTutor}' class='text-blue me-3'>Visualizar Agendamento</a>`;
         })
         .catch((error) => {
           console.error(error);

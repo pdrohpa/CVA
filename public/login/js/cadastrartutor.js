@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
 
-// Configuração Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBTghhMKFHgiWtumkLdjlyuohlR__yzEag",
   authDomain: "cva-controle-de-vac-de-animais.firebaseapp.com",
@@ -29,7 +28,6 @@ window.addEventListener("load", function () {
       .then((userCredential) => {
         const userId = userCredential.user.uid;
 
-        // Salva o nome no Realtime Database
         firebase
           .database()
           .ref("usuarios/" + userId)

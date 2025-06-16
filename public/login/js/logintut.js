@@ -24,7 +24,6 @@ const email = document.getElementById("email");
 const senha = document.getElementById("senha");
 const mensagem = document.getElementById("mensagem");
 
-// Login com Email e Senha
 botaoEmailSenha.addEventListener("click", function () {
   firebase
     .auth()
@@ -56,7 +55,6 @@ botaoEmailSenha.addEventListener("click", function () {
     });
 });
 
-// Login com Google
 botaoGoogle.addEventListener("click", function () {
   const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -69,7 +67,7 @@ botaoGoogle.addEventListener("click", function () {
 
       return firebase
         .database()
-        .ref("usuarios/" + uid) // cadastra no realtime database com o mesmo id do authenticator
+        .ref("usuarios/" + uid)
         .once("value")
         .then((snapshot) => {
           if (!snapshot.exists()) {
@@ -77,7 +75,7 @@ botaoGoogle.addEventListener("click", function () {
               .database()
               .ref("usuarios/" + uid)
               .set({
-                nome: user.displayName, //Utiliza o nome da conta do Google
+                nome: user.displayName,
                 telefone: "",
                 email: user.email,
                 funcao: "tutor",
@@ -106,7 +104,6 @@ botaoGoogle.addEventListener("click", function () {
     });
 });
 
-// Botão de cadastro
 cadastrar.addEventListener("click", function () {
   window.location.href = "../login/cadastrartutor.html";
 });

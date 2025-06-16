@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vacinas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-light">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link text-white" href="../../telainicial.html">Início</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="../adicionarvacina/adicionarvacina.html">Adicionar Vacina</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  <div class="container my-5">
+    <h2 class="text-center mb-4">Gerenciamento de Vacinas</h2>
+
+    
+ <main class="container d-flex justify-content-center px-3 mt-5">
+      <form id="formTipoVacina">
+          <div class="mb-3">
+              <label for="nomeTipo" class="form-label">Nome do Tipo de Vacina</label>
+              <input type="text" class="form-control" id="nomeTipo" required />
+          </div>
+          <div class="mb-3">
+              <label for="aplicacao" class="form-label">Aplicação</label>
+              <select class="form-select" id="aplicacao" required>
+                <option value="">Selecione</option>
+                <option value="cachorro">Cachorro</option>
+                <option value="gato">Gato</option>
+                <option value="passaro">Pássaro</option>
+             </select>
+         </div>
+    <button type="submit" class="btn btn-primary">Salvar Tipo</button>
+    <div id="resposta" class="mt-3"></div>
+    </form>
+    </main>
+
+  <script type="module" src="js/tiposdevacina.js"></script>
+</body>
+</html>

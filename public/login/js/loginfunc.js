@@ -22,7 +22,6 @@ const email = document.getElementById("email");
 const senha = document.getElementById("senha");
 const mensagem = document.getElementById("mensagem");
 
-// Login com Email e Senha
 botaoEmailSenha.addEventListener("click", function () {
   firebase
     .auth()
@@ -46,9 +45,7 @@ botaoEmailSenha.addEventListener("click", function () {
         throw new Error("Esse usuário não é um funcionário.");
       }
 
-      // Apenas até a tela de funcionario ser desenvolvida
-      mensagem.innerText = "Bem-vindo, " + usuario.nome;
-      console.log("Login como funcionário OK");
+      window.location.href = "../../funcionario/telainicial.html";
     })
     .catch((error) => {
       console.error(error.code, error.message);

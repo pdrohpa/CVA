@@ -1,4 +1,3 @@
-// Inicialização Firebase compat
 const firebaseConfig = {
   apiKey: "AIzaSyBTghhMKFHgiWtumkLdjlyuohlR__yzEag",
   authDomain: "cva-controle-de-vac-de-animais.firebaseapp.com",
@@ -21,7 +20,6 @@ const inputRacaOutros = document.getElementById("racaOutros");
 const especieSelect = document.getElementById("especie");
 const racaSelect = document.getElementById("raca");
 
-// Raças
 const racasCachorro = [
   "Shih Tzu",
   "Poodle",
@@ -88,7 +86,6 @@ racaSelect.addEventListener("change", () => {
   }
 });
 
-// Envio do formulário
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 

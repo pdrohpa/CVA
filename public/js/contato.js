@@ -5,7 +5,6 @@ import {
   push,
 } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
-// Sua configuração Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBTghhMKFHgiWtumkLdjlyuohlR__yzEag",
   authDomain: "cva-controle-de-vac-de-animais.firebaseapp.com",
@@ -17,11 +16,9 @@ const firebaseConfig = {
   appId: "1:674772281471:web:7c9dedf81224a4459fb74a",
 };
 
-// Inicializa o app e o banco de dados
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// Formulário
 const form = document.getElementById("formContato");
 const resposta = document.getElementById("resposta");
 

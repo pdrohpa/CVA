@@ -16,7 +16,6 @@ const database = firebase.database();
 const listaAnimais = document.getElementById("lista-animais");
 const mensagem = document.getElementById("mensagem");
 
-// Função para formatar data YYYY-MM-DD para DD/MM/YYYY
 function formatarData(dataStr) {
   if (!dataStr) return "-";
   const d = new Date(dataStr);
@@ -24,7 +23,6 @@ function formatarData(dataStr) {
   return d.toLocaleDateString("pt-BR");
 }
 
-// Verifica login e busca animais
 auth.onAuthStateChanged((user) => {
   if (!user) {
     mensagem.textContent = "Você precisa estar logado para ver seus animais.";
@@ -46,7 +44,6 @@ auth.onAuthStateChanged((user) => {
         return;
       }
 
-      // Para cada animal cadastrado
       Object.entries(dados).forEach(([key, animal]) => {
         const col = document.createElement("div");
         col.className = "col-12 col-md-6";
