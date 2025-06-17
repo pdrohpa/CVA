@@ -8,6 +8,7 @@ import {
 import {
   getAuth,
   onAuthStateChanged,
+  signOut,
 } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js";
 
 const firebaseConfig = {
@@ -24,12 +25,24 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
-const uidParam = new URLSearchParams(window.location.search).get("uid");
 
 const tabelaAgendamentos = document.getElementById("tabela-agendamentos");
 const campoBusca = document.getElementById("busca");
 let listaCompleta = [];
+let usuarioLogado = null;
+const logoutBtn = document.getElementById("logoutBtn");
 
+logoutBtn.addEventListener("click", () => {
+  signOut(auth)
+    .then(() => {
+      alert("Logout realizado com sucesso.");
+      window.location.href = "../../login/loginfuncionario.html";
+    })
+    .catch((error) => {
+      console.error("Erro ao fazer logout:", error);
+      alert("Erro ao sair. Tente novamente.");
+    });
+});
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     alert("Você precisa estar logado para acessar esse local.");
@@ -49,8 +62,13 @@ onAuthStateChanged(auth, async (user) => {
     }
 
     const dadosUsuario = usuarioSnap.val();
-    if (dadosUsuario.funcao !== "funcionario") {
-      alert("Acesso restrito a funcionários.");
+    usuarioLogado = dadosUsuario;
+
+    if (
+      dadosUsuario.funcao !== "funcionario" &&
+      dadosUsuario.funcao !== "veterinario"
+    ) {
+      alert("Acesso restrito a funcionários ou veterinários.");
       window.location.href = "../../login/logintutor.html";
       return;
     }
@@ -102,49 +120,60 @@ onAuthStateChanged(auth, async (user) => {
     console.error("Erro geral:", error);
     alert("Erro ao carregar dados.");
   }
-});
 
-window.excluirAgendamento = async function (uidTutor, idAgendamento) {
-  if (!confirm("Tem certeza que deseja excluir este agendamento?")) return;
+  window.excluirAgendamento = async function (uidTutor, idAgendamento) {
+    if (!confirm("Tem certeza que deseja excluir este agendamento?")) return;
 
-  try {
-    const agendamentoRef = ref(
-      database,
-      `agendamentos/${uidTutor}/${idAgendamento}`
-    );
-    await remove(agendamentoRef); // <-- Aqui está a correção
+    try {
+      const agendamentoRef = ref(
+        database,
+        `agendamentos/${uidTutor}/${idAgendamento}`
+      );
+      await remove(agendamentoRef);
+      alert("Agendamento excluído com sucesso!");
+      location.reload();
+    } catch (error) {
+      console.error("Erro ao excluir:", error);
+      alert("Erro ao excluir agendamento.");
+    }
+  };
 
-    alert("Agendamento excluído com sucesso!");
-    location.reload();
-  } catch (error) {
-    console.error("Erro ao excluir:", error);
-    alert("Erro ao excluir agendamento.");
-  }
-};
+  function renderizarTabela(lista) {
+    tabelaAgendamentos.innerHTML = "";
 
-function renderizarTabela(lista) {
-  tabelaAgendamentos.innerHTML = "";
+    if (lista.length === 0) {
+      tabelaAgendamentos.innerHTML =
+        "<tr><td colspan='6'>Nenhum agendamento encontrado.</td></tr>";
+      return;
+    }
 
-  if (lista.length === 0) {
-    tabelaAgendamentos.innerHTML =
-      "<tr><td colspan='6'>Nenhum agendamento encontrado.</td></tr>";
-    return;
-  }
+    lista.forEach((ag) => {
+      const tr = document.createElement("tr");
 
-  lista.forEach((ag) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
+      const botaoExcluir = `
+      <button class="btn btn-danger btn-sm" onclick="excluirAgendamento('${ag.uidTutor}', '${ag.idAgendamento}')">
+        Excluir
+      </button>`;
+
+      const botaoVacinar =
+        usuarioLogado?.tipo === "veterinario"
+          ? `<a href="../vacinacao/realizarvacinacao.html?uidTutor=${ag.uidTutor}&idAnimal=${ag.idAnimal}&idAgendamento=${ag.idAgendamento}" class="btn btn-success btn-sm">
+            Fazer Vacinação
+          </a>`
+          : "";
+
+      tr.innerHTML = `
       <td>${ag.nomeTutor}</td>
       <td>${ag.nomeAnimal}</td>
       <td>${ag.veterinario}</td>
       <td>${ag.data}</td>
       <td>${ag.hora}</td>
       <td>
-         <button class="btn btn-danger btn-sm" onclick="excluirAgendamento('${ag.uidTutor}', '${ag.idAgendamento}')">
-             Excluir
-         </button>
+        ${botaoExcluir}
+        ${botaoVacinar}
       </td>
     `;
-    tabelaAgendamentos.appendChild(tr);
-  });
-}
+      tabelaAgendamentos.appendChild(tr);
+    });
+  }
+});

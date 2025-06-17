@@ -20,12 +20,13 @@ const firebaseConfig = {
   messagingSenderId: "674772281471",
   appId: "1:674772281471:web:7c9dedf81224a4459fb74a",
 };
-
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+const db = getDatabase(app);
 const auth = getAuth(app);
 
-const mensagem = document.getElementById("mensagem");
+const params = new URLSearchParams(window.location.search);
+const idAnimal = params.get("idAnimal");
+
 const logoutBtn = document.getElementById("logoutBtn");
 
 logoutBtn.addEventListener("click", () => {
@@ -42,22 +43,37 @@ logoutBtn.addEventListener("click", () => {
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    alert("Você precisa estar logado para acessar esse local.");
+    alert("É necessário estar logado.");
     window.location.href = "../../login/logintutor.html";
     return;
   }
 
-  const uid = user.uid;
-  try {
-    const snapshot = await get(ref(database, "usuarios/" + uid + "/nome"));
-    if (snapshot.exists()) {
-      const nomeUsuario = snapshot.val();
-      mensagem.innerText = "Bem-vindo " + nomeUsuario;
-    } else {
-      mensagem.innerText = "Bem-vindo Usuário";
-    }
-  } catch (error) {
-    mensagem.innerText = "Bem-vindo Usuário";
-    console.error(error);
+  const historicoRef = ref(db, `historicoAnimal/${user.uid}/${idAnimal}`);
+  const animalRef = ref(db, `animais/${user.uid}/${idAnimal}`);
+
+  const [animalSnap, historicoSnap] = await Promise.all([
+    get(animalRef),
+    get(historicoRef),
+  ]);
+
+  if (animalSnap.exists()) {
+    document.getElementById("titulo").textContent = `Histórico de: ${
+      animalSnap.val().nome
+    }`;
+  }
+
+  const lista = document.getElementById("lista-historico");
+  if (historicoSnap.exists()) {
+    Object.values(historicoSnap.val()).forEach((registro) => {
+      const item = document.createElement("li");
+      item.innerHTML = `
+        <strong>Vacina:</strong> ${registro.vacina}<br>
+        <strong>Data:</strong> ${registro.dataAplicacao} ${registro.horaAplicacao}<br>
+        <strong>Veterinário:</strong> ${registro.nomeVeterinario}
+      `;
+      lista.appendChild(item);
+    });
+  } else {
+    lista.innerHTML = "<p>Sem registros de vacinação.</p>";
   }
 });

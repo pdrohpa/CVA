@@ -7,6 +7,7 @@ import {
 import {
   getAuth,
   onAuthStateChanged,
+  signOut,
 } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -30,6 +31,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const campoBusca = document.getElementById("busca");
   const btnNovo = document.getElementById("btn-novo-animal");
   let animaisComTutores = [];
+
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  logoutBtn.addEventListener("click", () => {
+    signOut(auth)
+      .then(() => {
+        alert("Logout realizado com sucesso.");
+        window.location.href = "../../login/loginfuncionario.html";
+      })
+      .catch((error) => {
+        console.error("Erro ao fazer logout:", error);
+        alert("Erro ao sair. Tente novamente.");
+      });
+  });
 
   if (btnNovo && uidParam) {
     btnNovo.style.display = "inline-block";
@@ -110,6 +125,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }', '${animal.id}')">
               Editar
             </button>
+             <a href="historico.html?uidTutor=${animal.uidTutor}&idAnimal=${
+        animal.id
+      }" class="btn btn-primary">
+                        Ver Histórico
+                      </a>
           </div>
         </div>
       `;

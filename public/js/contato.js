@@ -27,9 +27,10 @@ form.addEventListener("submit", async (e) => {
 
   const nome = document.getElementById("nome").value.trim();
   const email = document.getElementById("email").value.trim();
+  const telefone = document.getElementById("telefone").value.trim();
   const mensagem = document.getElementById("mensagem").value.trim();
 
-  if (!nome || !email || !mensagem) {
+  if (!nome || !email || !mensagem || !telefone) {
     resposta.textContent = "Preencha todos os campos.";
     resposta.classList.remove("text-success");
     resposta.classList.add("text-danger");
@@ -40,9 +41,11 @@ form.addEventListener("submit", async (e) => {
     await push(ref(database, "contatos"), {
       nome,
       email,
+      telefone,
       mensagem,
       dataHora: new Date().toISOString(),
     });
+    console.log(telefone);
 
     resposta.textContent = "Mensagem enviada com sucesso!";
     resposta.classList.remove("text-danger");

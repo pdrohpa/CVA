@@ -24,37 +24,23 @@ const params = new URLSearchParams(window.location.search);
 const uidTutor = params.get("uidTutor");
 const idAnimal = params.get("idAnimal");
 
-const racasCachorro = [
-  "Shih Tzu",
-  "Poodle",
-  "Yorkshire Terrier",
-  "Labrador Retriever",
-  "Golden Retriever",
-  "Bulldog Francês",
-  "Pinscher",
-  "Dachshund (Salsicha)",
-  "Lhasa Apso",
-  "Outro",
-];
-const racasGato = [
-  "Siamês",
-  "Persa",
-  "Maine Coon",
-  "Sphynx",
-  "Ragdoll",
-  "Bengal",
-  "Abissínio",
-  "Outro",
-];
-const racasPassaro = [
-  "Calopsita",
-  "Canário",
-  "Periquito",
-  "Papagaio",
-  "Agapornis",
-  "Outro",
-];
+let racasCachorro = [];
+let racasGato = [];
+let racasPassaro = [];
+async function carregarRacas() {
+  try {
+    const resposta = await fetch("../../../../data/data.json");
+    const racas = await resposta.json();
 
+    racasCachorro = racas.cachorro;
+    racasGato = racas.gato;
+    racasPassaro = racas.passaro;
+  } catch (erro) {
+    console.error("Erro ao carregar as raças:", erro);
+  }
+}
+
+carregarRacas();
 especieSelect.addEventListener("change", () => {
   const especie = especieSelect.value;
   racaSelect.innerHTML = '<option value="">Selecione uma raça</option>';

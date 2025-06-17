@@ -8,6 +8,7 @@ import {
 import {
   getAuth,
   onAuthStateChanged,
+  signOut,
 } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js";
 
 const firebaseConfig = {
@@ -28,6 +29,20 @@ const auth = getAuth(app);
 const tabelaTutores = document.getElementById("tabela-tutores");
 const campoBusca = document.getElementById("busca");
 let listaCompleta = [];
+
+const logoutBtn = document.getElementById("logoutBtn");
+
+logoutBtn.addEventListener("click", () => {
+  signOut(auth)
+    .then(() => {
+      alert("Logout realizado com sucesso.");
+      window.location.href = "../../login/loginfuncionario.html";
+    })
+    .catch((error) => {
+      console.error("Erro ao fazer logout:", error);
+      alert("Erro ao sair. Tente novamente.");
+    });
+});
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {

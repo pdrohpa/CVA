@@ -16,6 +16,20 @@ const database = firebase.database();
 const listaAnimais = document.getElementById("lista-animais");
 const mensagem = document.getElementById("mensagem");
 
+const logoutBtn = document.getElementById("logoutBtn");
+
+logoutBtn.addEventListener("click", () => {
+  signOut(auth)
+    .then(() => {
+      alert("Logout realizado com sucesso.");
+      window.location.href = "../../login/logintutor.html";
+    })
+    .catch((error) => {
+      console.error("Erro ao fazer logout:", error);
+      alert("Erro ao sair. Tente novamente.");
+    });
+});
+
 function formatarData(dataStr) {
   if (!dataStr) return "-";
   const d = new Date(dataStr);
@@ -63,9 +77,11 @@ auth.onAuthStateChanged((user) => {
                          animal.nascimento
                        )}
                      </p>
-                     <a href="historico-animal.html?animalId=${key}" class="btn btn-primary">
-                       Ver Histórico
-                     </a>
+                     <a href="historico.html?uidTutor=${
+                       animal.uidTutor
+                     }&idAnimal=${key}" class="btn btn-primary">
+                        Ver Histórico
+                      </a>
                      `;
 
         card.appendChild(cardBody);

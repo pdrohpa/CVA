@@ -1,13 +1,14 @@
-  <!DOCTYPE html>
-  <html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Vacinas</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <title>Editar Dados do Funcionário</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body class="bg-light">
-
+  <body class="container bg-light">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
@@ -34,39 +35,35 @@
           </div>
         </div>
       </nav>
+    <h2 class="mb-4">Editar Seus Dados</h2>
 
-    <div class="container my-5">
-      <h2 class="text-center mb-4">Gerenciamento de Vacinas</h2>
+    <div id="mensagem" class="mb-3"></div>
 
-      
-  <main class="container d-flex justify-content-center px-3 mt-5">
-        <div
-          class="card shadow-sm p-4 bg-white rounded w-100"
-          style="max-width: 500px"
-        >
-          <h2 class="mb-4 text-center" id="mensagem"></h2>
+    <form id="form-editar-funcionario">
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" id="nome" class="form-control" required />
+      </div>
 
-          <div class="d-grid gap-3">
-            <a href="tiposdevacina/tiposdevacina.html" class="btn btn-primary btn-lg">
-              Tipos de Vacina
-            </a>
+      <div class="mb-3">
+        <label for="telefone" class="form-label">Telefone</label>
+        <input type="tel" id="telefone" class="form-control" required />
+      </div>
 
-            <a
-              href="adicionarvacina/adicionarvacina.html"
-              class="btn btn-primary btn-lg"
-            >
-              Adicionar Lote
-            </a>
-            <a
-              href="adicionarvacina/consultarvacinas.html"
-              class="btn btn-primary btn-lg"
-            >
-              Ver Vacinas Adicionadas
-            </a>
-          </div>
-        </div>
-      </main>
+      <hr />
 
-    <script type="module" src="js/vacinas.js"></script>
+      <h5>Alterar Senha</h5>
+      <div class="mb-3">
+        <label for="senha" class="form-label">Nova Senha</label>
+        <input type="password" id="senha" class="form-control" minlength="6" />
+        <div class="form-text">Deixe em branco se não quiser alterar.</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+    </form>
+
+    <button id="logoutBtn" class="btn btn-outline-secondary mt-3">Sair</button>
+
+    <script type="module" src="./editarinformacoes.js"></script>
   </body>
-  </html>
+</html>

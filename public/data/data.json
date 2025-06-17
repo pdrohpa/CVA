@@ -1,0 +1,37 @@
+{
+  "cachorro": [
+    "Shih Tzu",
+    "Poodle",
+    "Yorkshire Terrier",
+    "Labrador Retriever",
+    "Golden Retriever",
+    "Bulldog Francês",
+    "Pinscher",
+    "Dachshund (Salsicha)",
+    "Lhasa Apso",
+    "Não sei",
+    "Vira-lata",
+    "Outro"
+  ],
+  "gato": [
+    "Siamês",
+    "Persa",
+    "Maine Coon",
+    "Sphynx",
+    "Ragdoll",
+    "Bengal",
+    "Abissínio",
+    "Não sei",
+    "Não tem",
+    "Outro"
+  ],
+  "passaro": [
+    "Calopsita",
+    "Canário",
+    "Periquito",
+    "Papagaio",
+    "Agapornis",
+    "Não sei",
+    "Outro"
+  ]
+}

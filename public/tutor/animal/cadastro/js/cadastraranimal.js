@@ -13,45 +13,43 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const database = firebase.database();
 
+const logoutBtn = document.getElementById("logoutBtn");
+
+logoutBtn.addEventListener("click", () => {
+  signOut(auth)
+    .then(() => {
+      alert("Logout realizado com sucesso.");
+      window.location.href = "../../login/logintutor.html";
+    })
+    .catch((error) => {
+      console.error("Erro ao fazer logout:", error);
+      alert("Erro ao sair. Tente novamente.");
+    });
+});
+
 const form = document.getElementById("form-cadastrar-animal");
 const mensagem = document.getElementById("mensagem");
 const inputRacaOutros = document.getElementById("racaOutros");
 
 const especieSelect = document.getElementById("especie");
 const racaSelect = document.getElementById("raca");
+let racasCachorro = [];
+let racasGato = [];
+let racasPassaro = [];
+async function carregarRacas() {
+  try {
+    const resposta = await fetch("../../../../data/data.json");
+    const racas = await resposta.json();
 
-const racasCachorro = [
-  "Shih Tzu",
-  "Poodle",
-  "Yorkshire Terrier",
-  "Labrador Retriever",
-  "Golden Retriever",
-  "Bulldog Francês",
-  "Pinscher",
-  "Dachshund (Salsicha)",
-  "Lhasa Apso",
-  "Outro",
-];
+    racasCachorro = racas.cachorro;
+    racasGato = racas.gato;
+    racasPassaro = racas.passaro;
+  } catch (erro) {
+    console.error("Erro ao carregar as raças:", erro);
+  }
+}
 
-const racasGato = [
-  "Siamês",
-  "Persa",
-  "Maine Coon",
-  "Sphynx",
-  "Ragdoll",
-  "Bengal",
-  "Abissínio",
-  "Outro",
-];
-
-const racasPassaro = [
-  "Calopsita",
-  "Canário",
-  "Periquito",
-  "Papagaio",
-  "Agapornis",
-  "Outro",
-];
+carregarRacas();
 
 especieSelect.addEventListener("change", () => {
   const especie = especieSelect.value;

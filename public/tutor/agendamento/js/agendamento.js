@@ -10,9 +10,9 @@ import {
 import {
   getAuth,
   onAuthStateChanged,
+  signOut,
 } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js";
 
-// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyBTghhMKFHgiWtumkLdjlyuohlR__yzEag",
   authDomain: "cva-controle-de-vac-de-animais.firebaseapp.com",
@@ -32,6 +32,21 @@ const animalSelect = document.getElementById("animal");
 const vacinaSelect = document.getElementById("vacina");
 const botaoCadastro = document.getElementById("botaoConfirmar");
 let tiposVacinasDisponiveis = {};
+
+const logoutBtn = document.getElementById("logoutBtn");
+
+logoutBtn.addEventListener("click", () => {
+  signOut(auth)
+    .then(() => {
+      alert("Logout realizado com sucesso.");
+      window.location.href = "../../login/logintutor.html";
+    })
+    .catch((error) => {
+      console.error("Erro ao fazer logout:", error);
+      alert("Erro ao sair. Tente novamente.");
+    });
+});
+
 onAuthStateChanged(auth, (user) => {
   if (!user) {
     alert("Você precisa estar logado para agendar.");
@@ -114,6 +129,34 @@ onAuthStateChanged(auth, (user) => {
       vacinaSelect.innerHTML = `<option value="">Nenhuma vacina disponível para ${especie}</option>`;
     }
   });
+  function carregarVeterinarios() {
+    const usuariosRef = ref(database, "usuarios");
+
+    get(usuariosRef)
+      .then((snapshot) => {
+        const todosUsuarios = snapshot.val();
+        const selectVet = document.getElementById("veterinario");
+
+        selectVet.innerHTML = `<option value="">Selecione um veterinário</option>`;
+
+        if (!todosUsuarios) return;
+
+        Object.values(todosUsuarios).forEach((usuario) => {
+          if (usuario.tipo === "veterinario") {
+            const option = document.createElement("option");
+            option.value = usuario.nome || usuario.email || "SemNome";
+            option.textContent = usuario.nome || usuario.email;
+            selectVet.appendChild(option);
+          }
+        });
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar veterinários:", error);
+        const selectVet = document.getElementById("veterinario");
+        selectVet.innerHTML = `<option value="">Erro ao carregar veterinários</option>`;
+      });
+  }
+  carregarVeterinarios();
   carregarVacinas();
   carregarAnimais();
 
