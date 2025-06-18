@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "cva-controle-de-vac-de-animais"
-  }
+    "default": "cva-controle-de-vac-de-animais",
+    "cva": "cva-controle-de-vac-de-animais"
+  },
+  "targets": {},
+  "etags": {}
 }
