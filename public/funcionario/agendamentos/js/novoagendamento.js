@@ -336,13 +336,13 @@ onAuthStateChanged(auth, (user) => {
 
       set(agendamentoRef, novoAgendamento)
         .then(() => {
-          resumo.innerText = `✅ Agendamento confirmado:
-                            Vacina: ${vacinaNome}
-                            Animal: ${animalNome}
-                            Veterinário: ${veterinario}
-                            Data: ${data}
-                            Hora: ${hora}`;
-
+          resumo.innerHTML = `✅ Agendamento confirmado:<br>
+                    <strong>Vacina:</strong> ${vacinaNome}<br>
+                    <strong>Animal:</strong> ${animalNome}<br>
+                    <strong>Veterinário:</strong> ${veterinario}<br>
+                    <strong>Data:</strong> ${data}<br>
+                    <strong>Hora:</strong> ${hora}`;
+       
           document.getElementById("form-agendamento").reset();
           const hojeMin = formatarDataParaInput(new Date());
           dataInput.min = hojeMin;
