@@ -175,7 +175,8 @@ onAuthStateChanged(auth, async (user) => {
     }
 
     lista.forEach((ag) => {
-      const tr = document.createElement("tr");
+       const tr = document.createElement("tr");
+      tr.classList.add("linha-agendamento");
 
       const botaoExcluir = `
         <button class="btn btn-danger btn-sm" onclick="excluirAgendamento('${ag.uidTutor}', '${ag.idAgendamento}')">
