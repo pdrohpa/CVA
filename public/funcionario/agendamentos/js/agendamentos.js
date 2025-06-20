@@ -170,7 +170,7 @@ onAuthStateChanged(auth, async (user) => {
 
     if (lista.length === 0) {
       tabelaAgendamentos.innerHTML =
-        "<tr><td colspan='6'>Nenhum agendamento encontrado para os esse animal / veterinário..</td></tr>";
+        "<tr><td colspan='6'>Nenhum agendamento encontrado para esse animal / veterinário..</td></tr>";
       return;
     }
 
