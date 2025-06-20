@@ -10,6 +10,8 @@ import {
   onAuthStateChanged,
   signOut,
   updatePassword,
+  EmailAuthProvider, // Importar para reautenticação
+  reauthenticateWithCredential, // Importar para reautenticação
 } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js";
 
 // Firebase Config
@@ -46,9 +48,8 @@ onAuthStateChanged(auth, async (user) => {
     if (snapshot.exists()) {
       const dados = snapshot.val();
 
-      // Validação de permissão
       if (dados.funcao !== "funcionario") {
-        alert("Apenas funcionários podem acessar essa página.");
+        alert("Apenas funcionários ou veterinários podem acessar essa página.");
         window.location.href = "../../login/loginfunc.html";
         return;
       }
@@ -67,24 +68,43 @@ onAuthStateChanged(auth, async (user) => {
 
     const nome = document.getElementById("nome").value.trim();
     const telefone = document.getElementById("telefone").value.trim();
-    const novaSenha = document.getElementById("senha").value.trim();
-
-    if (!nome || !telefone) {
-      mensagem.innerHTML = `<div class="text-danger">Preencha todos os campos obrigatórios.</div>`;
+    const senhaAtual = document.getElementById("senhaAtual").value.trim();
+    const novaSenha = document.getElementById("novaSenha").value.trim();
+    if (!nome || !telefone || !senhaAtual) {
+      mensagem.innerHTML = `<div class="text-danger">Preencha todos os campos obrigatórios (Nome, Telefone e Senha Atual).</div>`;
       return;
     }
 
     try {
+      const credential = EmailAuthProvider.credential(user.email, senhaAtual);
+      await reauthenticateWithCredential(user, credential);
+
       await update(userRef, { nome, telefone });
 
       if (novaSenha.length >= 6) {
         await updatePassword(user, novaSenha);
+      } else if (novaSenha.length > 0 && novaSenha.length < 6) {
+        mensagem.innerHTML = `<div class="text-danger">A nova senha deve ter no mínimo 6 caracteres.</div>`;
+        return;
       }
 
-      mensagem.innerHTML = `<div class="text-success">Dados atualizados com sucesso!</div>`;
-      document.getElementById("senha").value = "";
+      mensagem.innerHTML = `<div class="text-success">Dados e/ou senha atualizados com sucesso!</div>`;
+      document.getElementById("senhaAtual").value = "";
+      document.getElementById("novaSenha").value = "";
     } catch (error) {
-      mensagem.innerHTML = `<div class="text-danger">Erro ao atualizar dados: ${error.message}</div>`;
+      console.error("Erro ao atualizar dados:", error);
+      let errorMessage =
+        "Erro ao atualizar dados. Verifique a senha atual e tente novamente.";
+
+      if (error.code === "auth/wrong-password") {
+        errorMessage = "Senha atual incorreta. Por favor, tente novamente.";
+      } else if (error.code === "auth/user-mismatch") {
+        errorMessage = "Erro de autenticação de usuário.";
+      } else if (error.code === "auth/invalid-email") {
+        errorMessage = "Email inválido. Entre em contato com o suporte.";
+      }
+
+      mensagem.innerHTML = `<div class="text-danger">${errorMessage}</div>`;
     }
   });
 

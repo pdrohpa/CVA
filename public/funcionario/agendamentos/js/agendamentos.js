@@ -29,8 +29,12 @@ const auth = getAuth(app);
 const tabelaAgendamentos = document.getElementById("tabela-agendamentos");
 const campoBusca = document.getElementById("busca");
 let listaCompleta = [];
+let listaFiltradaParaExibicao = [];
 let usuarioLogado = null;
 const logoutBtn = document.getElementById("logoutBtn");
+
+const urlParams = new URLSearchParams(window.location.search);
+const uidTutorParam = urlParams.get("uidTutor");
 
 logoutBtn.addEventListener("click", () => {
   signOut(auth)
@@ -43,6 +47,7 @@ logoutBtn.addEventListener("click", () => {
       alert("Erro ao sair. Tente novamente.");
     });
 });
+
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     alert("Você precisa estar logado para acessar esse local.");
@@ -92,14 +97,35 @@ onAuthStateChanged(auth, async (user) => {
 
     listaCompleta = [];
 
-    for (const uidTutor in agendamentos) {
-      const nomeTutor = usuarios[uidTutor]?.nome || "Desconhecido";
-      const agendamentosDoTutor = agendamentos[uidTutor];
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    const hojeFormatado = hoje.toISOString().split("T")[0];
+
+    for (const currentUidTutor in agendamentos) {
+      if (uidTutorParam && currentUidTutor !== uidTutorParam) {
+        continue;
+      }
+
+      const nomeTutor = usuarios[currentUidTutor]?.nome || "Desconhecido";
+      const agendamentosDoTutor = agendamentos[currentUidTutor];
 
       for (const idAgendamento in agendamentosDoTutor) {
         const ag = agendamentosDoTutor[idAgendamento];
+
+        const dataAgendamentoParaComparacao = ag.data;
+
+        if (dataAgendamentoParaComparacao < hojeFormatado) {
+          continue;
+        }
+
+        if (!uidTutorParam && dadosUsuario.tipo === "veterinario") {
+          if (ag.veterinario !== dadosUsuario.nome) {
+            continue;
+          }
+        }
+
         listaCompleta.push({
-          uidTutor,
+          uidTutor: currentUidTutor,
           idAgendamento,
           nomeTutor,
           ...ag,
@@ -107,18 +133,19 @@ onAuthStateChanged(auth, async (user) => {
       }
     }
 
-    renderizarTabela(listaCompleta);
+    listaFiltradaParaExibicao = [...listaCompleta];
+    renderizarTabela(listaFiltradaParaExibicao);
 
     campoBusca.addEventListener("input", () => {
       const termo = campoBusca.value.toLowerCase().trim();
-      const filtrados = listaCompleta.filter((ag) =>
+      const filtrados = listaFiltradaParaExibicao.filter((ag) =>
         ag.nomeAnimal?.toLowerCase().includes(termo)
       );
       renderizarTabela(filtrados);
     });
   } catch (error) {
-    console.error("Erro geral:", error);
-    alert("Erro ao carregar dados.");
+    console.error("Erro geral ao carregar agendamentos:", error);
+    alert("Erro ao carregar dados dos agendamentos.");
   }
 
   window.excluirAgendamento = async function (uidTutor, idAgendamento) {
@@ -143,7 +170,7 @@ onAuthStateChanged(auth, async (user) => {
 
     if (lista.length === 0) {
       tabelaAgendamentos.innerHTML =
-        "<tr><td colspan='6'>Nenhum agendamento encontrado.</td></tr>";
+        "<tr><td colspan='6'>Nenhum agendamento encontrado para os esse animal / veterinário..</td></tr>";
       return;
     }
 
@@ -151,28 +178,29 @@ onAuthStateChanged(auth, async (user) => {
       const tr = document.createElement("tr");
 
       const botaoExcluir = `
-      <button class="btn btn-danger btn-sm" onclick="excluirAgendamento('${ag.uidTutor}', '${ag.idAgendamento}')">
-        Excluir
-      </button>`;
+        <button class="btn btn-danger btn-sm" onclick="excluirAgendamento('${ag.uidTutor}', '${ag.idAgendamento}')">
+          Excluir
+        </button>`;
 
       const botaoVacinar =
         usuarioLogado?.tipo === "veterinario"
           ? `<a href="../vacinacao/realizarvacinacao.html?uidTutor=${ag.uidTutor}&idAnimal=${ag.idAnimal}&idAgendamento=${ag.idAgendamento}" class="btn btn-success btn-sm">
-            Fazer Vacinação
-          </a>`
+              Fazer Vacinação
+            </a>`
           : "";
 
       tr.innerHTML = `
-      <td>${ag.nomeTutor}</td>
-      <td>${ag.nomeAnimal}</td>
-      <td>${ag.veterinario}</td>
-      <td>${ag.data}</td>
-      <td>${ag.hora}</td>
-      <td>
-        ${botaoExcluir}
-        ${botaoVacinar}
-      </td>
-    `;
+        <td>${ag.nomeTutor}</td>
+        <td>${ag.nomeAnimal}</td>
+        <td>${ag.veterinario}</td>
+        <td>${ag.vacina}</td>
+        <td>${ag.data}</td>
+        <td>${ag.hora}</td>
+        <td>
+          ${botaoExcluir}
+          ${botaoVacinar}
+        </td>
+      `;
       tabelaAgendamentos.appendChild(tr);
     });
   }
