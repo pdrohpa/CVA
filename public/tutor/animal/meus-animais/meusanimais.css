@@ -1,0 +1,204 @@
+/* RESET GERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #FFE4B5;
+  color: #1a1a1a;
+  line-height: 1.6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* NAVBAR NORMAL (não fixa) */
+.navbar {
+  background-color: #1f6f78;
+  padding: 1rem 2rem;
+  width: 100%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  list-style: none;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.25s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus {
+  background-color: #3baea0;
+  color: white;
+  outline: none;
+}
+
+#logoutBtn {
+  background-color: #990000;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+#logoutBtn:hover,
+#logoutBtn:focus {
+  background-color: #ff6f69;
+  outline: none;
+}
+
+/* MAIN CONTAINER */
+main.container {
+  max-width: 1200px;
+  margin: 2rem auto;  /* Dá um espaçamento vertical geral */
+  padding: 1rem;
+}
+
+/* TÍTULO PRINCIPAL */
+h2 {
+  color: #1f6f78;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* LISTA DE ANIMAIS (CARD GRID) */
+#lista-animais {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+/* CARD DE ANIMAL */
+.card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+  padding: 1rem 1.5rem;
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #1f6f78;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.card-text strong {
+  color: #1f6f78;
+}
+
+/* BOTÃO VER HISTÓRICO */
+.card a.btn {
+  display: inline-block;
+  background-color: #1f6f78;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.card a.btn:hover {
+  background-color: #3baea0;
+}
+
+/* MENSAGEM DE STATUS (NENHUM ANIMAL / ERRO) */
+#mensagem {
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 1rem;
+}
+
+/* FOOTER */
+footer {
+  background-color: #1f6f78;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+/* RESPONSIVO: Telas pequenas */
+@media (max-width: 576px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  #logoutBtn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .nav-links {
+    gap: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* RESPONSIVO: Footer grudado no final */
+@media (min-width: 768px) {
+  html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main.container {
+    flex: 1;
+  }
+}

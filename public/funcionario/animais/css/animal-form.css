@@ -1,0 +1,194 @@
+/* RESET BÁSICO */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #FFE4B5;
+  color: #1a1a1a;
+  line-height: 1.6;
+  padding: 1rem;
+}
+
+/* CENTRALIZAÇÃO DO FORMULÁRIO */
+main.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* CARD DO FORMULÁRIO */
+.card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* TÍTULO */
+#titulo-form {
+  text-align: center;
+  color: #1f6f78;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* LABELS MELHORADAS */
+.form-label {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.2rem;
+  display: block;
+  font-size: 1rem; /* Tamanho de fonte maior para melhor leitura */
+}
+
+/* CAMPOS DE FORMULÁRIO - MAIS COMPACTOS */
+.form-control,
+.form-select {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  padding: 0.5rem 0.8rem; /* Altura reduzida */
+  font-size: 0.95rem;
+  background-color: #f9f9f9;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #1f6f78;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 0.15rem rgba(31, 111, 120, 0.15);
+  outline: none;
+}
+
+/* ESPAÇAMENTO ENTRE OS CAMPOS */
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+/* INPUT DE DATA */
+input[type="date"] {
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.95rem;
+}
+
+/* SELECT */
+select.form-select {
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* CONTAINER DE RAÇA OUTROS */
+#containerRacaOutros {
+  margin-top: 1rem;
+}
+
+/* BOTÕES */
+button {
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+/* BOTÃO PRINCIPAL */
+.btn-primary {
+  background-color: #1f6f78;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #3baea0;
+}
+
+/* BOTÃO EXCLUIR */
+.btn-danger {
+  background-color: #c0392b;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #e74c3c;
+}
+
+/* BOTÃO SECUNDÁRIO */
+.btn-secondary {
+  background-color: #7f8c8d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #95a5a6;
+}
+
+/* MENSAGEM DE ALERTA EM VERMELHO */
+#mensagem {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1rem;
+  color: #d32f2f; /* Vermelho mais vivo */
+  font-size: 1rem;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .card {
+    padding: 1.5rem;
+  }
+
+  #titulo-form {
+    font-size: 1.6rem;
+  }
+
+  .form-control,
+  .form-select {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  button {
+    width: 100%;
+    margin-bottom: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #titulo-form {
+    font-size: 1.4rem;
+  }
+
+  .form-control,
+  .form-select {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.7rem;
+  }
+}

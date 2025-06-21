@@ -1,0 +1,148 @@
+/* RESET GERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #FFE4B5;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+/* NAVBAR */
+.navbar {
+  background-color: #1f6f78;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.25s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus {
+  background-color: #3baea0;
+  color: white;
+  outline: none;
+}
+
+#logoutBtn {
+  background-color: #990000;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+#logoutBtn:hover,
+#logoutBtn:focus {
+  background-color: #ff6f69;
+  outline: none;
+}
+
+/* MAIN CONTAINER */
+.main-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+/* CARD CENTRAL */
+.card-custom {
+  width: 100%;
+  max-width: 500px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* TÍTULO DE BOAS-VINDAS */
+.card-custom h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #1f6f78;
+}
+
+/* BOTÕES */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.button-group a {
+  text-align: center;
+  background-color: #1f6f78;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.button-group a:hover {
+  background-color: #3baea0;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #1f6f78;
+  color: white;
+  font-size: 0.9rem;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 576px) {
+  .nav-links {
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .card-custom {
+    padding: 1.5rem;
+  }
+
+  .button-group a {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+}

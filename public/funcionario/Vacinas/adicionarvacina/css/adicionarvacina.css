@@ -1,0 +1,166 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #FFE4B5;
+  color: #1a1a1a;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* NAVBAR */
+.navbar {
+  background-color: #1f6f78; 
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0 auto;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 600;
+  transition: color 0.25s ease;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus {
+  color: white;
+  background-color: #3baea0;
+  outline: none;
+}
+
+#logoutBtn {
+  background-color: #990000;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  
+
+}
+
+#logoutBtn:hover,
+#logoutBtn:focus {
+  background-color: #ff6f69;
+  outline: none;
+}
+/* CONTAINER GERAL */
+.container {
+  max-width: 800px;
+  margin: 3rem auto; /* equivalente a my-5 do Bootstrap */
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+.container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1f6f78;
+  font-size: 2.5rem; 
+  font-weight: 700;  
+}
+label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 600;           
+  color:black;          
+  font-size: 1.3rem;          
+     
+}
+
+/* FORMULÁRIO E CAMPOS */
+form#formVacina {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* INPUTS E SELECTS */
+form#formVacina input,
+form#formVacina select {
+  width: 100%;           /* ocupa toda largura */
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  display: block;
+  box-sizing: border-box;
+}
+form#formVacina select {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* BOTÃO */
+form#formVacina button {
+  background-color: #1f6f78;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form#formVacina button:hover {
+  background-color: #3baea0;
+}
+
+/* RESPOSTA (mensagem de feedback) */
+#resposta {
+  font-size: 1rem;
+  color: #006400;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  #logoutBtn {
+    margin-top: 1rem;
+    width: 100%;
+  }
+}

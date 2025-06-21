@@ -4,61 +4,36 @@
     <meta charset="UTF-8" />
     <title>Vacinação Pet - Início</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/style.css" />
+  
+    <link rel="stylesheet" href="css/index.css" />
   </head>
   <body>
-    <header class="text-center p-3 bg-primary text-white">
-      <h1 class="display-5">Controle de Vacina dos Animais</h1>
-      <p class="lead">Escolha seu tipo de acesso</p>
-    </header>
-    <nav
-      class="navbar navbar-expand-lg navbar-dark bg-primary justify-content-center"
-    >
-      <div class="container">
-        <div class="collapse navbar-collapse text-center" id="navbarNav">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a class="nav-link text-white fs-5" href="sobre.html">Sobre</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white fs-5" href="contato.html"
-                >Contato</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <section class="section text-center">
-      <div class="container">
-        <div class="row justify-content-center g-3">
-          <div class="col-md-4">
-            <a
-              href="login/logintutor.html"
-              class="btn btn-outline-primary btn-lg btn-custom"
-              >Sou Tutor</a
-            >
-          </div>
-          <div class="col-md-4">
-            <a
-              href="login/loginfuncionario.html"
-              class="btn btn-outline-success btn-lg btn-custom"
-              >Sou Funcionário</a
-            >
-          </div>
-        </div>
-      </div>
+  <header>
+  <h1>Controle de Vacina dos Animais</h1>
+</header>
+<nav>
+  <ul>
+    
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="contato.html">Contato</a></li>
+  </ul>
+</nav>
+<main>
+    <section class="main-contente">
+        <h1 id="titulo-pagina"> Escolhe o seu tipo de acesso: </h1>
+         <a href="login/logintutor.html" id="btn-tutor" class="btn" >Sou Tutor</a>
+    <a href="login/loginfuncionario.html" id="btn-funcionario" class="btn" >Sou Funcionário</a>
     </section>
+</main>
+ 
+<figure>
+            <img src="imag.jpeg" alt="Gato e cachorro lado a lado" id="imagem-inicial">
+            <figcaption>Vacinação dos seus melhores amigos</figcaption>
+        </figure>
+    </main>
 
-    <footer class="text-center p-3 bg-light mt-4">
-      <small>&copy; 2025 - CVA. Todos os direitos reservados.</small>
+    <footer>
+        <small>&copy; 2025 - CVA. Todos os direitos reservados.</small>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+</body>
 </html>

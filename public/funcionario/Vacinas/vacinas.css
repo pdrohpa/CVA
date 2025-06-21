@@ -1,0 +1,178 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #FFE4B5;
+  color: #1a1a1a;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.navbar {
+  background-color: #1f6f78;
+  padding: 1rem 2rem;
+  position: relative; 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.nav-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center; /* centraliza os links */
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 600;
+  transition: color 0.25s ease;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus {
+  color: white;
+  background-color: #3baea0;
+  outline: none;
+}
+
+#logoutBtn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #990000;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#logoutBtn:hover,
+#logoutBtn:focus {
+  background-color: #ff6f69;
+  outline: none;
+}
+
+
+
+/* CONTAINER DO TÍTULO */
+.container.my-5 {
+  padding: 3rem 1rem 2rem;
+  text-align: center;
+}
+
+.container.my-5 h2 {
+  color: #1f6f78;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* CONTAINER DO MAIN COM BOTÕES */
+main.container {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 550px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.card h2 {
+  color: black;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* BOTÕES */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1.5rem;
+  background-color: #1f6f78;
+  color: white;
+  margin-top: 1rem;
+  margin-bottom:1rem;
+  cursor: pointer;
+  font-weight:600;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #3baea0;
+  outline: none;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  #logoutBtn {
+    margin-top: 1rem;
+  }
+
+  .container.my-5 {
+    padding: 2rem 1rem;
+  }
+
+  main.container {
+    padding: 1.5rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container.my-5 h2 {
+    font-size: 1.5rem;
+  }
+
+  main.container {
+    padding: 1rem;
+  }
+
+  .btn {
+    padding: 0.6rem;
+    font-size: 0.95rem;
+  }
+}

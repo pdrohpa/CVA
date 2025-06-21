@@ -5,81 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Consulta de Vacinas</title>
 
-    <!-- Bootstrap 5.3.2 CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="css/consultarvacinas.css" />
 
-    <!-- Firebase compat -->
     <script src="https://www.gstatic.com/firebasejs/9.8.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.8.1/firebase-database-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.8.1/firebase-auth-compat.js"></script>
   </head>
 
   <body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a class="nav-link text-white" href="../../telainicial.html">Início</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="../tiposdevacina/tiposdevacina.html">Tipos de Vacina</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="adicionarvacina.html">Adicionar Lote</a>
-            </li>
-          </ul>
-          <button id="logoutBtn" class="btn btn-danger">Sair</button>
+     <nav class="navbar">
+     <div class="nav-container">
+    <ul class="nav-links">
+      <li><a href="../../telainicial.html">Início</a></li>
+      <li><a href="../tiposdevacina/tiposdevacina.html">Tipos de Vacina</a></li>
+      <li><a href="adicionarvacina.html">Adicionar Lote</a></li>
+    </ul>
+    <button id="logoutBtn">Sair</button>
+  </div>
+  </nav>
+  <div class="container my-5">
+      <div class="caixa">
+        <h2 class="text-center mb-4">Vacinas Cadastradas</h2>
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <label for="buscaTipo" class="form-label">Buscar por Tipo de Vacina:</label>
+            <input type="text" id="buscaTipo" class="form-control" placeholder="Digite o nome da vacina" />
+          </div>
+          <div class="col-md-6">
+            <label for="filtroAplicacao" class="form-label">Filtrar por Aplicação:</label>
+            <select id="filtroAplicacao" class="form-select">
+              <option value="">Todas as Aplicações</option>
+              <option value="cachorro">Cachorro</option>
+              <option value="gato">Gato</option>
+              <option value="passaro">Pássaro</option>
+            </select>
+          </div>
         </div>
-      </div>
-    </nav>
 
-    <div class="container my-5">
-      <h2 class="text-center mb-4">Vacinas Cadastradas</h2>
-      <div class="row mb-4">
-        <div class="col-md-6">
-          <label for="buscaTipo" class="form-label"
-            >Buscar por Tipo de Vacina:</label
-          >
-          <input
-            type="text"
-            id="buscaTipo"
-            class="form-control"
-            placeholder="Digite o nome da vacina"
-          />
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover align-middle bg-white shadow-sm">
+            <thead class="table-primary text-center">
+              <tr>
+                <th scope="col">Tipo de Vacina</th>
+                <th scope="col">Aplicação</th>
+                <th scope="col">Lote</th>
+                <th scope="col">Validade</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-vacinas" class="text-center"></tbody>
+          </table>
         </div>
-        <div class="col-md-6">
-          <label for="filtroAplicacao" class="form-label"
-            >Filtrar por Aplicação:</label
-          >
-          <select id="filtroAplicacao" class="form-select">
-            <option value="">Todas as Aplicações</option>
-            <option value="cachorro">Cachorro</option>
-            <option value="gato">Gato</option>
-            <option value="passaro">Pássaro</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="table-responsive">
-        <table
-          class="table table-bordered table-hover align-middle bg-white shadow-sm"
-        >
-          <thead class="table-primary text-center">
-            <tr>
-              <th scope="col">Tipo de Vacina</th>
-              <th scope="col">Aplicação</th>
-              <th scope="col">Lote</th>
-              <th scope="col">Validade</th>
-            </tr>
-          </thead>
-          <tbody id="tabela-vacinas" class="text-center"></tbody>
-        </table>
       </div>
     </div>
 

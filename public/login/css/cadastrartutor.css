@@ -1,0 +1,188 @@
+/* RESET GERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #FFE4B5;
+  color: #1a1a1a;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAVBAR */
+.navbar {
+  background-color: #1f6f78;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  list-style: none;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.25s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus {
+  background-color: #3baea0;
+  color: white;
+  outline: none;
+}
+
+/* CONTAINER CENTRAL */
+.container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+/* CARD DE CADASTRO */
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  padding: 2rem;
+}
+
+.card h2 {
+  color: #1f6f78;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.6rem;
+}
+label{
+  color:black;
+  font-weight: 600;
+}
+
+/* CAMPOS DE INPUT */
+.card input[type="text"],
+.card input[type="tel"],
+.card input[type="email"],
+.card input[type="password"] {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid black;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.card input:focus {
+  
+  outline: none;
+}
+
+/* MENSAGEM DE ERRO */
+.text-danger {
+  color: #990000;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* BOTÃO DE CADASTRO */
+#botaoCadastro {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #1f6f78;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+#botaoCadastro:hover {
+  background-color: #3baea0;
+}
+
+/* FOOTER */
+footer {
+  background-color: #1f6f78;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  margin-top: auto;
+  width: 100%;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .card h2 {
+    font-size: 1.4rem;
+  }
+
+  #botaoCadastro {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links li a {
+    font-size: 1rem;
+  }
+
+  .card input,
+  #botaoCadastro {
+    font-size: 0.9rem;
+  }
+
+  .card {
+    margin: 0 1rem;
+  }
+}

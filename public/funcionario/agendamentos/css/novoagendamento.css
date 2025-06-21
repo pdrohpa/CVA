@@ -1,0 +1,249 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #FFE4B5;
+  color: #1a1a1a;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* NAVBAR */
+.navbar {
+  background-color: #1f6f78; 
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0 auto;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 600;
+  transition: color 0.25s ease;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus {
+  color: white;
+  background-color: #3baea0;
+  outline: none;
+}
+
+#logoutBtn {
+  background-color: #990000;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#logoutBtn:hover,
+#logoutBtn:focus {
+  background-color: #ff6f69;
+  outline: none;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+h2 {
+  color: #1f6f78;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* FORMULÁRIO DE AGENDAMENTO */
+.card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.5rem;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+/* Labels maiores */
+.form-label {
+  font-weight: 700;
+  color: #333333;
+  font-size: 1.1rem;
+}
+
+/* Inputs e Selects */
+.form-control,
+.form-select {
+  padding: 0.6rem 0.9rem;
+  font-size: 1rem;
+  border: 1.8px solid #a9b9d6;
+  border-radius: 10px;
+  min-height: 40px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #3399ff;
+  outline: none;
+  box-shadow: 0 0 6px #3399ff80;
+}
+
+
+#veterinario {
+  min-height: 52px;
+  font-size: 1.1rem;
+  padding: 0.9rem 1.25rem;
+  width: 100%;
+}
+
+
+#botaoConfirmar {
+  display: block;
+  margin: 1rem auto 0 auto;
+  background-color: #1f6f78;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: bold;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  color: white;
+  width: 75%;
+  max-width: 320px;
+  text-align: center;
+}
+
+#botaoConfirmar:hover,
+#botaoConfirmar:focus {
+  background-color: #3baea0;
+  transform: scale(1.03);
+  outline: none;
+}
+form > div {
+  margin-bottom: 1.4rem;
+}
+
+/* RESUMO */
+#resumo {
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+  color: #333;
+  padding: 1rem;
+  background-color: #f4f9ff;
+  border: 1px solid #d0e3f1;
+  border-radius: 10px;
+}
+
+/* RESPONSIVIDADE */
+
+/* Tablet e celular médio */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .form-control,
+  .form-select {
+    font-size: 1rem;
+  }
+
+  #botaoConfirmar {
+    font-size: 1.05rem;
+  }
+}
+
+/* Celulares pequenos (<576px) */
+@media (max-width: 576px) {
+  .container {
+    margin: 1.5rem auto;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .card {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .form-label {
+    font-size: 1rem;
+  }
+
+  .form-control,
+  .form-select {
+    font-size: 0.95rem;
+    padding: 0.6rem 0.9rem;
+  }
+
+  #botaoConfirmar {
+    font-size: 1rem;
+    width: 90%;
+  }
+}
+
+/* Celulares muito pequenos (<480px) */
+@media (max-width: 480px) {
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  #logoutBtn {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #1f6f78;
+  color: white;
+}

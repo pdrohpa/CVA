@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffe4b5;
+  color: #1a1a1a;
+}
+
+
+/* Centralizar o card no meio da tela */
+.container {
+
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Estilo do cartão */
+.card {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Títulos */
+.card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #1f6f78;
+}
+
+/* Informações gerais (animal e vet) */
+#info-geral p {
+  margin: 0.5rem 0;
+  font-size: 1.05rem;
+}
+/* Espaçamento entre os grupos do formulário */
+form .mb-3 {
+  margin-bottom: 1.5rem;
+}
+form > div {
+  margin-bottom: 1.5rem;
+}
+
+/* Label dos campos */
+label {
+  font-weight: bold;
+  margin-bottom: 0.6rem;
+  display: inline-block;
+  font-size: 1.05rem;
+}
+
+/* Label dos campos */
+label {
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+  display: inline-block;
+}
+
+/* Estilo do select */
+select {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: #fff8ee;
+}
+
+/* Informações da vacina selecionada */
+#info-vacina {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem;
+  font-size: 0.95rem;
+}
+
+/* Botão */
+button#confirmar {
+  background-color: #1f6f78;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+button#confirmar:hover {
+  background-color: #3baea0;
+}
+
+/* Responsividade extra */
+@media (max-width: 600px) {
+  .card {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  #info-geral p {
+    font-size: 1rem;
+  }
+
+  select,
+  button#confirmar {
+    font-size: 1rem;
+  }
+}

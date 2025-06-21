@@ -1,0 +1,279 @@
+/* RESET GERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #FFE4B5;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+/* NAVBAR */
+.navbar {
+  background-color: #1f6f78;
+  padding: 1rem 2rem;
+ margin-top:0;
+ box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  list-style: none;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.25s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus {
+  background-color: #3baea0;
+  color: white;
+  outline: none;
+}
+
+#logoutBtn {
+  background-color: #990000;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+#logoutBtn:hover,
+#logoutBtn:focus {
+  background-color: #ff6f69;
+  outline: none;
+}
+
+/* CONTAINER PRINCIPAL LOGIN */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 100px); /* Desconta o tamanho da navbar e footer */
+  padding: 1rem;
+}
+
+/* CARD DE LOGIN */
+.login-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+.login-card h2 {
+  color: #1f6f78;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+label{
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  margin-left:5%;
+  font-size: 2 rem;
+}
+.login-card input[type="email"],
+.login-card input[type="password"] {
+  width: 90%;
+  margin: 0.5rem auto;
+  display: block;
+  padding: 0.6rem;
+  border: 1px solid black;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.login-card input:focus {
+  border-color: #1f6f78;
+  box-shadow: 0 0 5px rgba(31, 111, 120, 0.4);
+  outline: none;
+}
+
+/* BOTÕES */
+.login-card button {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  width: 90%;
+  margin: 0.5rem auto;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.login-card button:active {
+  transform: scale(0.97);
+}
+
+#authEmailSenha {
+  background-color: #1f6f78;
+  color: white;
+}
+
+#authEmailSenha:hover {
+  background-color: #3baea0;
+}
+
+#cadastrar {
+  background-color: #3baea0;
+  color: white;
+}
+
+#cadastrar:hover {
+  background-color: #1f6f78;
+}
+
+#authGoogle {
+  background-color: #db4437;
+  color: white;
+}
+
+#authGoogle:hover {
+  background-color: #c23321;
+}
+
+/* ESTILO PARA BOTÃO EM ESTADO DE LOADING */
+.botao-loading {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.botao-loading::after {
+  content: " ⏳";
+  position: absolute;
+  right: 1rem;
+}
+
+/* MENSAGEM DE SITUAÇÃO / ERRO / SUCESSO */
+#situacao,
+#mensagem {
+  color: #990000;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-align: center;
+  transition: opacity 0.3s ease;
+}
+
+/* Feedback de erro */
+.mensagem-erro {
+  background-color: #ffe6e6;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+  padding: 0.5rem;
+  border-radius: 6px;
+  margin: 0.5rem auto;
+  width: 90%;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* Feedback de sucesso */
+.mensagem-sucesso {
+  background-color: #e6ffe6;
+  color: #007f00;
+  border: 1px solid #007f00;
+  padding: 0.5rem;
+  border-radius: 6px;
+  margin: 0.5rem auto;
+  width: 90%;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* Ocultar mensagens com transição */
+.oculto {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* FOOTER */
+footer {
+  background-color: #1f6f78;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  margin-top: auto;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-card {
+    padding: 1rem;
+  }
+
+  .login-card h2 {
+    font-size: 1.4rem;
+  }
+
+  .login-card button {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links li a {
+    font-size: 1rem;
+  }
+
+  .login-card input,
+  .login-card button {
+    font-size: 0.9rem;
+  }
+}

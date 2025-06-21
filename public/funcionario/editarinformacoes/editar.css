@@ -1,0 +1,189 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #FFE4B5;
+  color: #1a1a1a;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* TÍTULO */
+.mb-4 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #1f6f78;
+  text-align: center;
+}
+
+/* NAVBAR */
+.navbar {
+  background-color: #1f6f78;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0 auto;
+  padding: 0;
+  flex: 1;
+  justify-content: center; /* Centraliza os links horizontalmente */
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus {
+  background-color: #3baea0;
+  color: white;
+  outline: none;
+}
+
+#logoutBtn {
+  background-color: #990000;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: auto; /* Faz o botão ir para a extrema direita */
+}
+
+#logoutBtn:hover,
+#logoutBtn:focus {
+  background-color: #ff6f69;
+  outline: none;
+}
+
+/* FORMULÁRIO */
+form {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: larger;
+}
+
+form input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+form button {
+  background-color: #1f6f78;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #3baea0;
+}
+
+form text {
+  margin-bottom: 0.5rem;
+}
+
+/* MENSAGENS */
+.text-danger {
+  color: #b00020;
+  margin-top: 1rem;
+  margin-left: 0;
+  display: block;
+}
+
+h5 {
+  margin: 1rem;
+  color: red;
+  text-align: center;
+  font-size: large;
+}
+
+.text-success {
+  color: #007e33;
+  margin-top: 1rem;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  #logoutBtn {
+    width: 80%;
+    max-width: 300px;
+    margin-top: 1rem;
+    margin-left: 0;
+  }
+
+  form {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .mb-4 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links li a {
+    font-size: 0.95rem;
+    padding: 0.5rem;
+  }
+
+  #logoutBtn {
+    width: 100%;
+  }
+}

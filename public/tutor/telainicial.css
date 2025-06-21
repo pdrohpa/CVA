@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #FFE4B5;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+.navbar {
+  background-color: #1f6f78;
+  width: 100%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  margin-bottom: 1rem;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.25s ease;
+}
+
+.nav-links li a:hover {
+  background-color: #3baea0;
+  color: white;
+}
+
+.nav-left {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+#logoutBtn {
+  background-color: #990000;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  white-space: nowrap;
+}
+
+#logoutBtn:hover {
+  background-color: #ff6f69;
+}
+
+.wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+main.container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.card {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.card h2 {
+  color: #1f6f78;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.card a.btn {
+  display: block;
+  background-color: #1f6f78;
+  color: white;
+  font-size: 1.1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background-color 0.25s ease;
+  margin-bottom: 1rem;
+}
+
+.card a.btn:hover {
+  background-color: #3baea0;
+}
+
+footer {
+  background-color: #1f6f78;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  #logoutBtn {
+    width: 100%;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .card a.btn {
+    font-size: 1rem;
+    padding: 0.6rem 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card h2 {
+    font-size: 1.4rem;
+  }
+
+  .card a.btn {
+    font-size: 1rem;
+    padding: 0.5rem 0.8rem;
+  }
+}

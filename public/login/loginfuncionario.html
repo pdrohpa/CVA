@@ -5,45 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login como Funcionário</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
+    <link   rel="stylesheet"  href="css/loginfuncionario.css" />
 
+   
     <script defer src="/__/firebase/9.8.1/firebase-app-compat.js"></script>
     <script defer src="/__/firebase/9.8.1/firebase-auth-compat.js"></script>
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
+
   </head>
   <body>
-    <nav
-      class="navbar navbar-expand-lg navbar-dark bg-primary justify-content-center"
-    >
-      <div class="container">
-        <div class="collapse navbar-collapse text-center" id="navbarNav">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a class="nav-link text-white fs-5" href="../index.html"
-                >Início</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white fs-5" href="../sobre.html">Sobre</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white fs-5" href="../contato.html"
-                >Contato</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div
-      class="container d-flex justify-content-center align-items-center vh-100"
-    >
-      <div class="card p-4 shadow login-card">
+    <nav class="navbar">
+  <div class="nav-container">
+    <ul class="nav-links">
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../sobre.html">Sobre</a></li>
+      <li><a href="../contato.html">Contato</a></li>
+    </ul>
+  </div>
+</nav>
+
+     <main class="container">
+    <div class="login-card">
         <h2 class="text-center mb-4">Login - Funcionário</h2>
 
         <div class="mb-3">
@@ -72,15 +55,11 @@
           <p id="mensagem"></p>
         </div>
       </div>
-    </div>
+     </main>
     <footer class="text-center p-3 bg-light">
       <small>&copy; 2025 - CVA. Todos os direitos reservados.</small>
     </footer>
     <script type="module" src="js/loginfunc.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
+    
   </body>
 </html>

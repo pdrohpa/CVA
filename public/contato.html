@@ -1,73 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Contato - CVA</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <header class="text-center p-3 bg-primary text-white">
-      <h1 class="display-5">Fale Conosco</h1>
-      <p class="lead">Entre em contato com nossa equipe</p>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contato - CVA</title>
+  <link rel="stylesheet" href="css/stylecontato.css" />
+</head>
+<body>
+  <header>
+    <h1>Controle de Vacina dos Animais</h1>
+  </header>
 
-    <nav
-      class="navbar navbar-expand-lg navbar-dark bg-primary justify-content-center"
-    >
-      <div class="container">
-        <div class="collapse navbar-collapse text-center" id="navbarNav">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a class="nav-link text-white fs-5" href="index.html">Início</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white fs-5" href="sobre.html">Sobre</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  <nav>
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+    </ul>
+  </nav>
 
-    <section class="section py-5">
-      <div class="container">
-        <form id="formContato" class="mx-auto" style="max-width: 600px">
-          <div class="mb-3">
-            <label for="nome" class="form-label">Nome</label>
-            <input type="text" id="nome" class="form-control" required />
-          </div>
-          <div class="mb-3">
-            <label for="telefone" class="form-label">Telefone</label>
-            <input type="tel" id="telefone" class="form-control" required />
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">E-mail</label>
-            <input type="email" id="email" class="form-control" required />
-          </div>
-          <div class="mb-3">
-            <label for="mensagem" class="form-label">Mensagem</label>
-            <textarea
-              id="mensagem"
-              class="form-control"
-              rows="5"
-              required
-            ></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary mx-auto">Enviar</button>
-          <p id="resposta" class="mt-3 text-success"></p>
-        </form>
-      </div>
+  <main>
+     <section class="titulo-pagina">
+      <h1>📬 Fale Conosco</h1>
+      <p>Entre em contato com nossa equipe</p>
     </section>
 
-    <footer class="text-center p-3 bg-light">
-      <small>&copy; 2025 - CVA. Todos os direitos reservados.</small>
-    </footer>
+      <section class="section">
+      <form id="formContato">
+        <div>
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" required />
+        </div>
+        <div>
+          <label for="telefone">Telefone:</label>
+          <input type="tel" id="telefone" required />
+        </div>
+        <div>
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" required />
+        </div>
+        <div>
+          <label for="mensagem">Mensagem:</label>
+          <textarea id="mensagem" required></textarea>
+        </div>
+        <button type="submit">Enviar</button>
+        <p id="resposta"></p>
+      </form>
+    </section>
+  </main>
 
-    <script type="module" src="js/contato.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+  <footer>
+    <small>&copy; 2025 - CVA. Todos os direitos reservados.</small>
+  </footer>
+
+  <script type="module" src="js/contato.js"></script>
+</body>
 </html>
