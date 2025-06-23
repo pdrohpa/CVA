@@ -1,3 +1,15 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+import {
+  getDatabase,
+  ref,
+  get,
+} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyBTghhMKFHgiWtumkLdjlyuohlR__yzEag",
   authDomain: "cva-controle-de-vac-de-animais.firebaseapp.com",
@@ -9,12 +21,14 @@ const firebaseConfig = {
   appId: "1:674772281471:web:7c9dedf81224a4459fb74a",
 };
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const auth = getAuth(app);
 
 const tabelaVacinas = document.getElementById("tabela-vacinas");
 const buscaTipo = document.getElementById("buscaTipo");
 const filtroAplicacao = document.getElementById("filtroAplicacao");
+const logoutBtn = document.getElementById("logoutBtn");
 
 let vacinas = {};
 let tipos = {};
@@ -23,7 +37,7 @@ logoutBtn.addEventListener("click", () => {
   signOut(auth)
     .then(() => {
       alert("Logout realizado com sucesso.");
-      window.location.href = "../../login/loginfuncionario.html";
+      window.location.href = "../../../login/loginfuncionario.html";
     })
     .catch((error) => {
       console.error("Erro ao fazer logout:", error);
@@ -31,19 +45,56 @@ logoutBtn.addEventListener("click", () => {
     });
 });
 
-function carregarDados() {
-  db.ref("tiposVacinas")
-    .once("value")
-    .then((snapshotTipos) => {
-      tipos = snapshotTipos.val() || {};
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    alert("Você precisa estar logado para acessar este local.");
+    window.location.href = " ../../../login/logintutor.html";
+    return;
+  }
 
-      db.ref("vacinas")
-        .once("value")
-        .then((snapshotVacinas) => {
-          vacinas = snapshotVacinas.val() || {};
-          aplicarFiltros();
-        });
-    });
+  try {
+    const uid = user.uid;
+    const usuarioRef = ref(database, `usuarios/${uid}`);
+    const usuarioSnap = await get(usuarioRef);
+
+    if (!usuarioSnap.exists()) {
+      alert("Usuário não encontrado.");
+      window.location.href = "../../../login/logintutor.html";
+      return;
+    }
+
+    const dadosUsuario = usuarioSnap.val();
+
+    if (dadosUsuario.funcao !== "funcionario") {
+      alert("Acesso restrito a funcionários.");
+      window.location.href = "../../../login/logintutor.html";
+      return;
+    }
+
+    await carregarDados();
+
+    buscaTipo.addEventListener("input", aplicarFiltros);
+    filtroAplicacao.addEventListener("change", aplicarFiltros);
+  } catch (error) {
+    console.error("Erro geral na autenticação ou carregamento inicial:", error);
+    alert("Erro ao carregar dados.");
+  }
+});
+
+async function carregarDados() {
+  try {
+    const snapshotTipos = await get(ref(database, "tiposVacinas"));
+    tipos = snapshotTipos.val() || {};
+
+    const snapshotVacinas = await get(ref(database, "vacinas"));
+    vacinas = snapshotVacinas.val() || {};
+
+    aplicarFiltros();
+  } catch (error) {
+    console.error("Erro ao carregar dados do Firebase:", error);
+    tabelaVacinas.innerHTML =
+      "<tr><td colspan='4'>Erro ao carregar dados das vacinas. Por favor, verifique suas permissões.</td></tr>";
+  }
 }
 
 function aplicarFiltros() {
@@ -51,6 +102,8 @@ function aplicarFiltros() {
   const aplicacaoSelecionada = filtroAplicacao.value;
 
   tabelaVacinas.innerHTML = "";
+
+  let vacinasEncontradas = 0;
 
   Object.values(vacinas).forEach((vacina) => {
     const tipo = tipos[vacina.tipoVacina];
@@ -72,16 +125,12 @@ function aplicarFiltros() {
         <td>${vacina.validade}</td>
       `;
       tabelaVacinas.appendChild(linha);
+      vacinasEncontradas++;
     }
   });
 
-  if (tabelaVacinas.innerHTML.trim() === "") {
+  if (vacinasEncontradas === 0) {
     tabelaVacinas.innerHTML =
-      "<tr><td colspan='4'>Nenhuma vacina encontrada.</td></tr>";
+      "<tr><td colspan='4'>Nenhuma vacina encontrada com os critérios de busca.</td></tr>";
   }
 }
-
-buscaTipo.addEventListener("input", aplicarFiltros);
-filtroAplicacao.addEventListener("change", aplicarFiltros);
-
-carregarDados();

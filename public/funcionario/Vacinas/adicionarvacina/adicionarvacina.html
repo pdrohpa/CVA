@@ -1,54 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vacinas</title>
-  <link rel="stylesheet" href="css/adicionarvacina.css"/>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vacinas</title>
+    <link rel="stylesheet" href="css/adicionarvacina.css" />
+  </head>
 
- <body class="bg-light">
-     <nav class="navbar">
-     <div class="nav-container">
-    <ul class="nav-links">
-      <li><a href="../../telainicial.html">Início</a></li>
-      <li><a href="../tiposdevacina/tiposdevacina.html">Tipos de Vacina</a></li>
-      <li><a href="consultarvacinas.html">Vacinas Adicionadas</a></li>
-    </ul>
-    <button id="logoutBtn">Sair</button>
-  </div>
-  </nav>
-
-   <div class="container my-5">
-  <h2 class="text-center mb-4">Gerenciamento de Vacinas</h2>
-
-  <main class="main-box d-flex justify-content-center px-3 mt-5">
-    <form id="formVacina">
-      <div class="mb-3">
-        <label for="tipoVacina" class="form-label">Tipo de Vacina</label>
-        <select class="form-select" id="tipoVacina" required>
-          <option value="">Carregando...</option>
-        </select>
+  <body class="bg-light">
+    <nav class="navbar">
+      <div class="nav-container">
+        <ul class="nav-links">
+          <li><a href="../../telainicial.html">Início</a></li>
+          <li>
+            <a href="../tiposdevacina/tiposdevacina.html">Tipos de Vacina</a>
+          </li>
+          <li><a href="consultarvacinas.html">Vacinas Adicionadas</a></li>
+        </ul>
+        <button id="logoutBtn">Sair</button>
       </div>
+    </nav>
 
-      <div class="mb-3">
-        <label for="lote" class="form-label">Lote</label>
-        <input type="text" class="form-control" id="lote" required />
-      </div>
+    <div class="container my-5">
+      <h2 class="text-center mb-4">Gerenciamento de Vacinas</h2>
 
-      <div class="mb-3">
-        <label for="validade" class="form-label">Validade</label>
-        <input type="date" class="form-control" id="validade" required />
-      </div>
+      <main class="main-box d-flex justify-content-center px-3 mt-5">
+        <form id="formVacina">
+          <div class="mb-3">
+            <label for="tipoVacina" class="form-label">Tipo de Vacina</label>
+            <select class="form-select" id="tipoVacina" required>
+              <option value="">Carregando...</option>
+            </select>
+          </div>
 
-      <button type="submit" class="btn btn-primary">Adicionar Vacina</button>
-      <div id="resposta" class="mt-3"></div>
-    </form>
-  </main>
-</div>
+          <div class="mb-3">
+            <label for="lote" class="form-label">Lote</label>
+            <input type="text" class="form-control" id="lote" required />
+          </div>
 
-    
+          <div class="mb-3">
+            <label for="validade" class="form-label">Validade</label>
+            <input type="date" class="form-control" id="validade" required />
+          </div>
 
-  <script type="module" src="js/adicionarvacina.js/"></script>
-</body>
+          <button type="submit" class="btn btn-primary">
+            Adicionar Vacina
+          </button>
+          <div id="resposta" class="mt-3"></div>
+        </form>
+      </main>
+    </div>
+
+    <script type="module" src="js/adicionarvacina.js"></script>
+  </body>
 </html>
