@@ -28,6 +28,8 @@ const params = new URLSearchParams(window.location.search);
 const idAnimal = params.get("idAnimal");
 
 const logoutBtn = document.getElementById("logoutBtn");
+const menuToggle = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
 
 logoutBtn.addEventListener("click", () => {
   signOut(auth)
@@ -41,6 +43,11 @@ logoutBtn.addEventListener("click", () => {
     });
 });
 
+if (menuToggle && navLinks) { 
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+    });
+}
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     alert("É necessário estar logado.");
