@@ -27,6 +27,14 @@ const auth = getAuth(app);
 
 const mensagem = document.getElementById("mensagem");
 const logoutBtn = document.getElementById("logoutBtn");
+const menuToggle = document.getElementById('menu-toggle');
+      const navLinks = document.getElementById('nav-links');
+
+     if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+    });
+}
 
 logoutBtn.addEventListener("click", () => {
   signOut(auth)
