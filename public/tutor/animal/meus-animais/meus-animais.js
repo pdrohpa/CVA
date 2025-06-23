@@ -17,6 +17,15 @@ const listaAnimais = document.getElementById("lista-animais");
 const mensagem = document.getElementById("mensagem");
 
 const logoutBtn = document.getElementById("logoutBtn");
+const menuToggle = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
+
+ if (menuToggle && navLinks) {
+        // Adiciona um evento de clique ao botão
+        menuToggle.addEventListener('click', () => {
+          // Adiciona ou remove a classe 'show' da lista de links
+          navLinks.classList.toggle('show');
+        });
 
 logoutBtn.addEventListener("click", () => {
   signOut(auth)
