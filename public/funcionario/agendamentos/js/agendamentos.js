@@ -189,20 +189,31 @@ onAuthStateChanged(auth, async (user) => {
               Fazer Vacinação
             </a>`
           : "";
+     tr.innerHTML = `
+  <td data-label="Nome">${ag.nomeTutor}</td>
+  <td data-label="Animal">${ag.nomeAnimal}</td>
+  <td data-label="Veterinário">${ag.veterinario}</td>
+  <td data-label="Vacina">${ag.vacina}</td>
+  <td data-label="Data">${ag.data}</td>
+  <td  data-label="Hora">${ag.hora}</td>
+  <td>
+    <div class="celula-acoes">
+      ${botaoExcluir}
+      ${botaoVacinar}
+    </div>
+  </td>
+`;
 
-      tr.innerHTML = `
-        <td>${ag.nomeTutor}</td>
-        <td>${ag.nomeAnimal}</td>
-        <td>${ag.veterinario}</td>
-        <td>${ag.vacina}</td>
-        <td>${ag.data}</td>
-        <td>${ag.hora}</td>
-        <td>
-          ${botaoExcluir}
-          ${botaoVacinar}
-        </td>
-      `;
       tabelaAgendamentos.appendChild(tr);
     });
   }
+   document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', function() {
+    navLinks.classList.toggle('active');
+    });
+  });
+  
 });
