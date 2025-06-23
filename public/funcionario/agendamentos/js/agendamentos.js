@@ -14,8 +14,7 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyBTghhMKFHgiWtumkLdjlyuohlR__yzEag",
   authDomain: "cva-controle-de-vac-de-animais.firebaseapp.com",
-  databaseURL:
-    "https://cva-controle-de-vac-de-animais-default-rtdb.firebaseio.com",
+  databaseURL: "https://cva-controle-de-vac-de-animais-default-rtdb.firebaseio.com",
   projectId: "cva-controle-de-vac-de-animais",
   storageBucket: "cva-controle-de-vac-de-animais.appspot.com",
   messagingSenderId: "674772281471",
@@ -69,10 +68,7 @@ onAuthStateChanged(auth, async (user) => {
     const dadosUsuario = usuarioSnap.val();
     usuarioLogado = dadosUsuario;
 
-    if (
-      dadosUsuario.funcao !== "funcionario" &&
-      dadosUsuario.funcao !== "veterinario"
-    ) {
+    if (dadosUsuario.funcao !== "funcionario" && dadosUsuario.funcao !== "veterinario") {
       alert("Acesso restrito a funcionários ou veterinários.");
       window.location.href = "../../login/logintutor.html";
       return;
@@ -87,8 +83,7 @@ onAuthStateChanged(auth, async (user) => {
     ]);
 
     if (!agendamentosSnap.exists()) {
-      tabelaAgendamentos.innerHTML =
-        "<tr><td colspan='6'>Nenhum agendamento encontrado.</td></tr>";
+      tabelaAgendamentos.innerHTML = "<tr><td colspan='6'>Nenhum agendamento encontrado.</td></tr>";
       return;
     }
 
@@ -152,10 +147,7 @@ onAuthStateChanged(auth, async (user) => {
     if (!confirm("Tem certeza que deseja excluir este agendamento?")) return;
 
     try {
-      const agendamentoRef = ref(
-        database,
-        `agendamentos/${uidTutor}/${idAgendamento}`
-      );
+      const agendamentoRef = ref(database, `agendamentos/${uidTutor}/${idAgendamento}`);
       await remove(agendamentoRef);
       alert("Agendamento excluído com sucesso!");
       location.reload();
@@ -170,50 +162,52 @@ onAuthStateChanged(auth, async (user) => {
 
     if (lista.length === 0) {
       tabelaAgendamentos.innerHTML =
-        "<tr><td colspan='6'>Nenhum agendamento encontrado para esse animal / veterinário..</td></tr>";
+        "<tr><td colspan='6'>Nenhum agendamento encontrado para esse animal / veterinário.</td></tr>";
       return;
     }
 
     lista.forEach((ag) => {
-       const tr = document.createElement("tr");
+      const tr = document.createElement("tr");
       tr.classList.add("linha-agendamento");
-
-      const botaoExcluir = `
-        <button class="btn btn-danger btn-sm" onclick="excluirAgendamento('${ag.uidTutor}', '${ag.idAgendamento}')">
-          Excluir
-        </button>`;
 
       const botaoVacinar =
         usuarioLogado?.tipo === "veterinario"
-          ? `<a href="../vacinacao/realizarvacinacao.html?uidTutor=${ag.uidTutor}&idAnimal=${ag.idAnimal}&idAgendamento=${ag.idAgendamento}" class="btn btn-success btn-sm">
+          ? `<a href="../vacinacao/realizarvacinacao.html?uidTutor=${ag.uidTutor}&idAnimal=${ag.idAnimal}&idAgendamento=${ag.idAgendamento}" class="btn-acao btn-vacinar">
               Fazer Vacinação
             </a>`
           : "";
-     tr.innerHTML = `
-  <td data-label="Nome">${ag.nomeTutor}</td>
-  <td data-label="Animal">${ag.nomeAnimal}</td>
-  <td data-label="Veterinário">${ag.veterinario}</td>
-  <td data-label="Vacina">${ag.vacina}</td>
-  <td data-label="Data">${ag.data}</td>
-  <td  data-label="Hora">${ag.hora}</td>
-  <td>
-    <div class="celula-acoes">
-      ${botaoExcluir}
-      ${botaoVacinar}
-    </div>
-  </td>
-`;
+
+      const botaoExcluir = `
+        <button class="btn-acao btn-excluir" onclick="excluirAgendamento('${ag.uidTutor}', '${ag.idAgendamento}')">
+          Excluir
+        </button>`;
+
+      tr.innerHTML = `
+        <td data-label="Nome">${ag.nomeTutor}</td>
+        <td data-label="Animal">${ag.nomeAnimal}</td>
+        <td data-label="Veterinário">${ag.veterinario}</td>
+        <td data-label="Vacina">${ag.vacina}</td>
+        <td data-label="Data">${ag.data}</td>
+        <td data-label="Hora">${ag.hora}</td>
+        <td>
+          <div class="celula-acoes">
+            ${botaoExcluir}
+            ${botaoVacinar}
+          </div>
+        </td>
+      `;
 
       tabelaAgendamentos.appendChild(tr);
     });
   }
-   document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
+});
 
-    hamburger.addEventListener('click', function() {
+// Menu hamburguer
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+
+  hamburger.addEventListener('click', function() {
     navLinks.classList.toggle('active');
-    });
   });
-  
 });
