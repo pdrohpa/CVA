@@ -1,0 +1,2 @@
+### INTERAÇÃO HUMANO-COMPUTADOR (IHC):
+- O presente projeto consiste no desenvolvimento de um sistema digital para o cadastro e gerenciamento da vacinação de animais, voltado especialmente para pet shops e organizações não governamentais (ONG’s). Tendo isso em vista, a iniciativa integra disciplinas do curso de Tecnologia em Análise e Desenvolvimento de Sistemas do Instituto Federal de Educação, Ciência e Tecnologia de São Paulo – Campus Campinas (IFSP), por meio de um projeto de extensão interdisciplinar.
