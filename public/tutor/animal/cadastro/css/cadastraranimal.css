@@ -1,24 +1,30 @@
-/* RESET GERAL */
+/* RESET GERAL E LAYOUT BASE */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #FFE4B5;
+  background-color: #ffe4b5;
   color: #1a1a1a;
   line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* NAVBAR */
 .navbar {
   background-color: #1f6f78;
   padding: 1rem 2rem;
-
-  z-index: 999;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  width: 100%;
 }
 
 .nav-container {
@@ -27,8 +33,6 @@ body {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  flex-wrap: wrap;
-  gap: 1rem;
 }
 
 .nav-links {
@@ -37,9 +41,6 @@ body {
   flex: 1;
   list-style: none;
   gap: 2rem;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
 }
 
 .nav-links li a {
@@ -55,7 +56,6 @@ body {
 .nav-links li a:hover,
 .nav-links li a:focus {
   background-color: #3baea0;
-  color: white;
   outline: none;
 }
 
@@ -67,120 +67,143 @@ body {
   font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.25s ease;
-}
-h2{
-  text-align: center;
-  font-size: 1.5rem;
-}
-#logoutBtn:hover,
-#logoutBtn:focus {
-  background-color: #ff6f69;
-  outline: none;
-}
-main.container {
-  max-width: 600px;       /* Limita a largura máxima do formulário */
-  margin: 40px auto;      /* Centraliza horizontalmente e adiciona margem vertical */
-  padding: 20px;          /* Espaçamento interno */
-  background-color: #fff; /* Fundo branco para destacar o conteúdo */
-  border-radius: 12px;    /* Bordas arredondadas */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  display: flex;          /* Mantém o flex do d-flex */
-  flex-direction: column; /* Organiza os filhos na vertical */
-  gap: 1.5rem;            /* Espaço entre os filhos do container */
+  transition: background-color 0.2s ease;
 }
 
-form#form-cadastrar-animal {
+#logoutBtn:hover {
+  background-color: #c0392b;
+}
+
+/* Esconde o botão hambúrguer em telas grandes */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* MAIN CONTENT E FORMULÁRIO */
+main.container {
+  flex: 1; /* Faz o conteúdo principal crescer e empurrar o footer se houver */
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+main.container h2 {
+  text-align: center;
+  color: #1f6f78;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+#form-cadastrar-animal {
   display: flex;
   flex-direction: column;
   gap: 1.5rem; /* Espaço entre os grupos de campos */
 }
 
-form#form-cadastrar-animal .mb-3,
-form#form-cadastrar-animal .card {
+/* Aplica estilo aos grupos de formulário (div com classe .mb-3) */
+.mb-3 {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* Espaço entre label e input/select */
+  gap: 0.5rem; /* Espaço entre label e input */
 }
 
-form#form-cadastrar-animal label {
-  font-weight: 400;
-  color: black;
-  font-size: 1.5rem;
+/* Estilo para todos os labels dentro do formulário */
+#form-cadastrar-animal label {
+  font-weight: 600;
+  color: #333;
+  font-size: 1.1rem;
 }
 
-form#form-cadastrar-animal input[type="text"],
-form#form-cadastrar-animal input[type="date"],
-form#form-cadastrar-animal select {
-  padding: 0.5rem 0.75rem;
+/* Estilo para todos os campos de entrada e seleção */
+#form-cadastrar-animal input[type="text"],
+#form-cadastrar-animal input[type="date"],
+#form-cadastrar-animal select {
+  padding: 0.75rem 1rem;
   font-size: 1rem;
   border: 1.5px solid #ccc;
   border-radius: 8px;
-  transition: border-color 0.25s ease;
-}
-main.container h2 {
-  color: #1f6f78;
-  font-weight: 600;
-  font-size: 2rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-form#form-cadastrar-animal input[type="text"]:focus,
-form#form-cadastrar-animal input[type="date"]:focus,
-form#form-cadastrar-animal select:focus {
+/* Efeito de foco para os campos */
+#form-cadastrar-animal input[type="text"]:focus,
+#form-cadastrar-animal input[type="date"]:focus,
+#form-cadastrar-animal select:focus {
   border-color: #1f6f78;
+  box-shadow: 0 0 0 3px rgba(31, 111, 120, 0.2);
   outline: none;
 }
 
-form#form-cadastrar-animal button[type="submit"] {
+/* Estilo para o botão de submit */
+#form-cadastrar-animal button[type="submit"] {
   background-color: #1f6f78;
   color: white;
   font-size: 1.1rem;
-  padding: 0.75rem;
+  padding: 0.8rem;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-weight: 700;
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
+  margin-top: 1rem;
 }
 
-form#form-cadastrar-animal button[type="submit"]:hover,
-form#form-cadastrar-animal button[type="submit"]:focus {
+#form-cadastrar-animal button[type="submit"]:hover {
   background-color: #3baea0;
-  outline: none;
 }
 
-/* Campo para raça 'Outros' */
-#racaOutros {
-  border: 1.5px solid #ccc;
-  border-radius: 8px;
-  padding: 0.5rem 0.75rem;
-  font-size: 1rem;
-  transition: border-color 0.25s ease;
-}
-
-#racaOutros:focus {
-  border-color: #1f6f78;
-  outline: none;
-}
-
-/* === Responsivo === */
-@media (max-width: 576px) {
-  form#form-cadastrar-animal {
-    gap: 1rem;
+/* RESPONSIVO PARA TELAS PEQUENAS (até 768px) */
+@media (max-width: 768px) {
+  .nav-container {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  
+  .menu-toggle {
+    display: block; /* Mostra o botão hambúrguer */
   }
 
-  form#form-cadastrar-animal input[type="text"],
-  form#form-cadastrar-animal input[type="date"],
-  form#form-cadastrar-animal select,
-  form#form-cadastrar-animal button[type="submit"] {
-    font-size: 1rem;
-    padding: 0.6rem 0.8rem;
+  .nav-links {
+    display: none; /* Esconde os links */
+    position: absolute;
+    top: 65px; /* Posição abaixo da navbar (ajuste se precisar) */
+    left: 0;
+    width: 100%;
+    background-color: #1f6f78;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  form#form-cadastrar-animal button[type="submit"] {
-    font-size: 1rem;
+  .nav-links.show {
+    display: flex;
+  }
+  
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  main.container {
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+
+  main.container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 }

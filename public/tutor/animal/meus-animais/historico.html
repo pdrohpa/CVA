@@ -9,23 +9,29 @@
   </head>
  
   <body class="bg-light">
-    <div class="wrapper">
+  
 <nav class="navbar">
   <div class="nav-container">
-    <ul class="nav-links">
+
+    <button class="menu-toggle" id="menu-toggle">
+      &#9776; </button>
+    
+    <ul class="nav-links" id="nav-links">
       <li><a href="../../telainicial.html">Início</a></li>
       <li><a href="../../agendamento/visualizaragendamentos.html">Meus Agendamentos</a></li>
-      <li><a  href="../../agendamento/agendamento.html">Fazer Agendamento</a></li>
+      <li><a href="../../agendamento/agendamento.html">Fazer Agendamento</a></li>
       <li><a href="meus-animais.html">Meus Animais</a></li>
     </ul>
+
     <button id="logoutBtn">Sair</button>
+
   </div>
 </nav>
-
+  <div class="wrapper">
     <h1 id="titulo"></h1>
     <div id="info-animal"></div>
     <ul id="lista-historico"></ul>
-
+  </div>
     <script type="module" src="historico.js"></script>
   </body>
 </html>

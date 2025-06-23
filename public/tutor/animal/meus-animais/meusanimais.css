@@ -5,15 +5,16 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: #FFE4B5;
+  background-color: #ffe4b5;
   color: #1a1a1a;
   line-height: 1.6;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* NAVBAR NORMAL (não fixa) */
@@ -79,10 +80,22 @@ html, body {
   outline: none;
 }
 
+/* ========== NOVO: ESTILO DO BOTÃO HAMBÚRGUER ========== */
+/* Fica escondido em telas grandes */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem; /* Tamanho do ícone */
+  cursor: pointer;
+}
+
+
 /* MAIN CONTAINER */
 main.container {
   max-width: 1200px;
-  margin: 2rem auto;  /* Dá um espaçamento vertical geral */
+  margin: 2rem auto; /* Dá um espaçamento vertical geral */
   padding: 1rem;
 }
 
@@ -168,8 +181,48 @@ footer {
   font-size: 0.9rem;
 }
 
-/* RESPONSIVO: Telas pequenas */
-@media (max-width: 576px) {
+
+/* ========== RESPONSIVO ATUALIZADO (para telas pequenas) ========== */
+@media (max-width: 768px) {
+  /* Alinha o botão de menu à esquerda e o de sair à direita */
+  .nav-container {
+    justify-content: space-between;
+    flex-wrap: nowrap; /* Impede a quebra de linha dos botões */
+  }
+
+  /* Mostra o botão do menu */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Esconde os links por padrão */
+  .nav-links {
+    display: none;
+
+    /* Estiliza como um menu suspenso */
+    position: absolute;
+    top: 65px; /* Posição abaixo da navbar (ajuste se necessário) */
+    left: 0;
+    width: 100%;
+    background-color: #1f6f78;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Classe .show que o JavaScript adiciona para exibir o menu */
+  .nav-links.show {
+    display: flex;
+  }
+  
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Demais ajustes responsivos que já existiam */
   h2 {
     font-size: 1.5rem;
   }
@@ -182,23 +235,17 @@ footer {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
   }
-
-  .nav-links {
-    gap: 1rem;
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
 
-/* RESPONSIVO: Footer grudado no final */
-@media (min-width: 768px) {
-  html, body {
-    height: 100%;
+/* ========== NOVO: RESPONSIVO PARA FOOTER GRUDADO EM BAIXO ========== */
+@media (min-width: 769px) { /* Aplicado em telas maiores que 768px */
+  body {
     display: flex;
     flex-direction: column;
+    min-height: 100vh; /* Usa a altura total da janela de visualização como altura mínima */
   }
 
   main.container {
-    flex: 1;
+    flex: 1; /* Faz o conteúdo principal crescer para ocupar o espaço disponível, empurrando o footer */
   }
 }

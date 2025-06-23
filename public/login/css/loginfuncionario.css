@@ -202,12 +202,12 @@ footer {
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
   .nav-links {
-    flex-direction: column;
+   
     gap: 0.8rem;
   }
 
   .nav-container {
-    flex-direction: column;
+   
     align-items: center;
   }
 
@@ -225,17 +225,48 @@ footer {
   }
 }
 
-@media (max-width: 480px) {
+
+ @media (max-width: 480px) {
+   .navbar {
+    padding: 0.4rem 0.5rem; /* Reduz altura da barra */
+  }
+
+  .nav-container {
+    flex-direction: row;      /* Mantém os itens lado a lado */
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-links {
+    flex-direction: row;      /* Links em linha */
+    gap: 0.5rem;              /* Pequeno espaço entre links */
+    flex-wrap: wrap;          /* Permite quebra de linha se faltar espaço */
+    padding: 0;
+    justify-content: center;
+  }
+
   .nav-links li a {
-    font-size: 1rem;
+    font-size: 0.75rem;       /* Fonte menor pra caber melhor */
+    padding: 0.15rem 0.4rem;  /* Menos padding */
+    line-height: 1.1;
   }
 
   .login-card input,
   .login-card button {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    padding: 0.5rem;
   }
 
   .login-card {
-    margin: 0 1rem;
+    margin: 0 0.5rem;
+    padding: 0.8rem;
+  }
+
+  .login-card h2 {
+    font-size: 1.2rem;
   }
 }
+
+

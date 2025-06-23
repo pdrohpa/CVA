@@ -29,11 +29,24 @@ body {
   margin: 0 auto;
 }
 
+.nav-links-group {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
 .nav-links {
   display: flex;
+  justify-content: center;
+  flex-grow: 1;
   list-style: none;
-  gap: 2rem;
-  margin: 0 auto;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  display: flex;
 }
 
 .nav-links li a {
@@ -54,19 +67,40 @@ body {
 }
 
 #logoutBtn {
+  margin-left: auto;
   background-color: #990000;
   border: none;
   color: white;
-  padding: 0.6rem 1.4rem;
-  font-size: 1.1rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.nav-container > ul.nav-links {
+  justify-content: center;
+  flex-grow: 1;
 }
 
 #logoutBtn:hover,
 #logoutBtn:focus {
   background-color: #ff6f69;
   outline: none;
+  transform: scale(1.03);
+}
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Layout padrão para telas grandes */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* CONTAINER */
@@ -104,14 +138,13 @@ h2 {
   flex-direction: column;
   gap: 0.4rem;
 }
-/* Labels maiores */
+
 .form-label {
   font-weight: 700;
   color: #333333;
   font-size: 1.1rem;
 }
 
-/* Inputs e Selects */
 .form-control,
 .form-select {
   padding: 0.6rem 0.9rem;
@@ -128,14 +161,12 @@ h2 {
   box-shadow: 0 0 6px #3399ff80;
 }
 
-
 #veterinario {
   min-height: 52px;
   font-size: 1.1rem;
   padding: 0.9rem 1.25rem;
   width: 100%;
 }
-
 
 #botaoConfirmar {
   display: block;
@@ -158,10 +189,13 @@ h2 {
   transform: scale(1.03);
   outline: none;
 }
+
 form > div {
   margin-bottom: 1.4rem;
 }
-
+#logoutBtn {
+  margin-left: auto;
+}
 /* RESUMO */
 #resumo {
   margin-top: 1.5rem;
@@ -177,10 +211,39 @@ form > div {
 
 /* Tablet e celular médio */
 @media (max-width: 768px) {
-  .nav-links {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-container {
+    justify-content: center;
+  }
+
+  .nav-links-group {
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
+  }
+
+.nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #1f6f78;
+    padding: 1rem 0;
+    text-align: center;
+  }
+  .nav-links li {
+    margin: 0.5rem 0;
+  }
+    .nav-links.show {
+    display: flex;
+  }
+ #logoutBtn {
+    margin-top: 10px;
   }
 
   .card {
@@ -194,6 +257,12 @@ form > div {
 
   #botaoConfirmar {
     font-size: 1.05rem;
+  }
+    #logoutBtn {
+    margin-left: auto;
+    align-self: flex-end;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
   }
 }
 
@@ -230,17 +299,27 @@ form > div {
 
 /* Celulares muito pequenos (<480px) */
 @media (max-width: 480px) {
+  .nav-links-group {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
   .nav-links {
     flex-direction: column;
     gap: 0.5rem;
   }
 
   #logoutBtn {
-    width: 100%;
-    margin-top: 0.5rem;
+    width: auto;
+    margin-top: 0;
+    align-self: flex-end;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
   }
 }
 
+/* FOOTER (fora de qualquer media query) */
 footer {
   text-align: center;
   padding: 1rem 0;
