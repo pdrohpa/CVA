@@ -6,4 +6,4 @@ Membros da equipe: <br>
 - Milena Souza Borges Silva <br>
 - Pedro Henrique Pereira de Almeida <br>  
 
-Clique [aqui](https://cva-controle-de-vac-de-animais.web.app/) para acessar o CVA.
+Clique [aqui](https://cva-controle-de-vac-de-animais.web.app/) para acessar ao CVA.
