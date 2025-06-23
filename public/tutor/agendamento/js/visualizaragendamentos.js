@@ -25,10 +25,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
-
+document.addEventListener("DOMContentLoaded", () => {
 const corpoTabela = document.getElementById("corpoTabela");
 
 const logoutBtn = document.getElementById("logoutBtn");
+ const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+  }
 
 logoutBtn.addEventListener("click", () => {
   signOut(auth)
