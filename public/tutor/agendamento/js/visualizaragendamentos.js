@@ -102,7 +102,7 @@ function gerarLinha(ag, id) {
       <td>${ag.data}</td>
       <td>${ag.hora}</td>
       <td>${new Date(ag.criadoEm).toLocaleString("pt-BR")}</td>
-      <td><button class='btn btn-danger btn-sm btn-excluir' data-id='${id}'>Excluir</button></td>
+      <td><button class='btn-excluir' data-id='${id}'>Excluir</button></td>
     </tr>
   `;
 }
