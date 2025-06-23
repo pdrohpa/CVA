@@ -33,6 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let animaisComTutores = [];
 
   const logoutBtn = document.getElementById("logoutBtn");
+  const menuToggle = document.getElementById('menu-toggle');
+ const navLinks = document.getElementById('nav-links');
+
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('show');
+        });
+      }
 
   logoutBtn.addEventListener("click", () => {
     signOut(auth)
