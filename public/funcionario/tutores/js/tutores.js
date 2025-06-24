@@ -31,6 +31,12 @@ const campoBusca = document.getElementById("busca");
 let listaCompleta = [];
 
 const logoutBtn = document.getElementById("logoutBtn");
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', function() {
+  navLinks.classList.toggle('show');
+});
 
 logoutBtn.addEventListener("click", () => {
   signOut(auth)
