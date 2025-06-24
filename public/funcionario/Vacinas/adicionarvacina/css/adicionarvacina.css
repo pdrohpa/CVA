@@ -17,9 +17,6 @@ body {
 .navbar {
   background-color: #1f6f78; 
   padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 999;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
@@ -145,22 +142,95 @@ form#formVacina button:hover {
   font-size: 1rem;
   color: #006400;
 }
-
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
-  .container {
-    padding: 1.5rem;
-    margin: 2rem 1rem;
+   body {
+    display: block;
+  }
+ body {
+    padding: 0;
+  }
+  .nav-container {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  .table td.acoes button {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+  }
+  .menu-toggle {
+    display: block;
   }
 
   .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #1f6f78;
     flex-direction: column;
-    gap: 1rem;
     align-items: center;
+    padding: 1rem 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  #logoutBtn {
-    margin-top: 1rem;
-    width: 100%;
+  .nav-links.show {
+    display: flex;
   }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+ #logoutBtn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+  }
+  .container {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  .container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  form#formVacina {
+    gap: 1rem;
+  }
+
+  form#formVacina label {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  form#formVacina input,
+  form#formVacina select {
+    padding: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  form#formVacina button {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+  }
+
+  #resposta {
+    font-size: 0.95rem;
+  }
+
+  
 }

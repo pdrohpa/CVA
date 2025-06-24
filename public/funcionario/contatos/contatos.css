@@ -125,24 +125,60 @@ body {
 .responsive-table td button:hover {
   background-color: #146c43;
 }
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
 
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
+  body {
+    display: block;
+  }
+ body {
+    padding: 0;
+  }
   .nav-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  .menu-toggle {
+    display: block;
   }
 
   .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #1f6f78;
     flex-direction: column;
-    gap: 0.75rem;
+    align-items: center;
+    padding: 1rem 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  #logoutBtn {
-    align-self: flex-end;
+  .nav-links.show {
+    display: flex;
   }
 
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+ #logoutBtn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+  }
   .responsive-table {
     min-width: 100%;
   }
@@ -154,15 +190,21 @@ body {
 }
 
 @media (max-width: 480px) {
+    #logoutBtn {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    width: auto;                /* Impede de ocupar 100% */
+    margin-left: auto;          /* Joga ele para a direita dentro do flex */
+    display: block;              /* Opcional, força comportamento de bloco */
+  }
   .responsive-table th,
   .responsive-table td {
     font-size: 0.75rem;
     padding: 0.5rem;
   }
 
-  #logoutBtn {
-    width: 100%;
-  }
+  
 
   .nav-links li a {
     font-size: 0.95rem;

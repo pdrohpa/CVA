@@ -82,6 +82,11 @@ body {
   border-bottom: 2px solid #0d6efd;
   padding-bottom: 0.5rem;
 }
+main, #info-animal, #lista-historico {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
 
 #info-animal {
   background-color: #fff;
@@ -114,37 +119,60 @@ body {
   font-weight: 600;
 }
 
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .navbar .navbar-collapse {
-    width: 100%;
-  }
-
-  .navbar .nav-links {
-    flex-direction: column;
-    width: 100%;
-    padding: 0.5rem 0;
-  }
-
-  .navbar .nav-links li {
-    width: 100%;
-  }
-
-  .navbar .nav-links li a {
-    width: 100%;
+   body {
     display: block;
-    padding: 0.75rem;
+  }
+ body {
+    padding: 0;
+  }
+  .nav-container {
+    justify-content: space-between;
+    flex-wrap: nowrap;
   }
 
-  #logoutBtn {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
     width: 100%;
-    margin-top: 1rem;
-    font-size: 1rem;
+    background-color: #1f6f78;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+ #logoutBtn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    margin-right: 0;
+    width: auto;
   }
 
   #titulo {
@@ -156,4 +184,42 @@ body {
   #lista-historico li {
     padding: 0.8rem;
   }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #1f6f78;
+    padding: 1rem 0;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+  #info-animal {
+    font-size: 0.95rem;
+    padding: 0.75rem;
+    margin: 1rem 0.5rem;
+  }
+
+  #lista-historico li {
+    font-size: 0.95rem;
+    padding: 0.75rem;
+    margin: 0.5rem;
+  }
+
+  #titulo {
+    font-size: 1.3rem;
+    margin: 1rem 0;
+    padding: 0.3rem;
+  }
+
+  #lista-historico p {
+    text-align: center;
+  }
 }
+

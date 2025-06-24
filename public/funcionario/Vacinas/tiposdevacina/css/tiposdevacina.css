@@ -151,11 +151,64 @@ button[type="submit"]:focus {
   min-height: 24px;
   text-align: center;
 }
-
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
 /* RESPONSIVO */
 
 /* Tablet (até 768px) */
 @media (max-width: 768px) {
+  body {
+    display: block;
+  }
+ body {
+    padding: 0;
+  }
+  .nav-container {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  .table td.acoes button {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+  }
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #1f6f78;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+ #logoutBtn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+  }
   main.container {
     padding: 1rem 1.2rem;
   }
@@ -183,15 +236,9 @@ button[type="submit"]:focus {
 
 /* Celulares pequenos (até 480px) */
 @media (max-width: 480px) {
-  .nav-links {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
+ 
 
-  #logoutBtn {
-    margin-top: 1rem;
-    width: 100%;
-  }
+
 
   main.container {
     padding: 0.8rem 1rem;

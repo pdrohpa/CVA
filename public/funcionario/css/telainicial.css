@@ -1,4 +1,3 @@
-/* RESET GERAL */
 * {
   margin: 0;
   padding: 0;
@@ -10,33 +9,33 @@ body {
   background-color: #FFE4B5;
   color: #1a1a1a;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* NAVBAR */
+
 .navbar {
   background-color: #1f6f78;
   padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 999;
+  position: relative; 
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  justify-content: center; /* centraliza os links */
+  align-items: center;
 }
 
 .nav-links {
   display: flex;
   list-style: none;
   gap: 2rem;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
-  flex-wrap: wrap;
 }
 
 .nav-links li a {
@@ -44,19 +43,23 @@ body {
   color: #ffffff;
   font-size: 1.15rem;
   font-weight: 600;
+  transition: color 0.25s ease;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
-  transition: background-color 0.25s ease;
 }
 
 .nav-links li a:hover,
 .nav-links li a:focus {
-  background-color: #3baea0;
   color: white;
+  background-color: #3baea0;
   outline: none;
 }
 
 #logoutBtn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   background-color: #990000;
   border: none;
   color: white;
@@ -64,7 +67,6 @@ body {
   font-size: 1.1rem;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.25s ease;
 }
 
 #logoutBtn:hover,
@@ -72,6 +74,7 @@ body {
   background-color: #ff6f69;
   outline: none;
 }
+
 
 /* MAIN CONTAINER */
 .main-wrapper {
@@ -129,14 +132,65 @@ footer {
   color: white;
   font-size: 0.9rem;
 }
-
-/* RESPONSIVIDADE */
-@media (max-width: 576px) {
-  .nav-links {
-    gap: 1rem;
-    justify-content: center;
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  body {
+    display: block;
+  }
+ body {
+    padding: 0;
+  }
+  .nav-container {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  .table td.acoes button {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+  }
+  .menu-toggle {
+    display: block;
   }
 
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #1f6f78;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+ #logoutBtn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+  }
+}
+/* RESPONSIVIDADE */
+@media (max-width: 576px) {
+ 
   .card-custom {
     padding: 1.5rem;
   }

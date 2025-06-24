@@ -115,21 +115,33 @@ body {
   padding: 0.75rem;
   text-align: center;
   border: 1px solid #ddd;
+  vertical-align: middle;
 }
 
+/* Cabeçalho da tabela */
 .table thead {
   background-color: #1f6f78;
   color: #fff;
 }
 
+/* Hover nas linhas */
 .table-hover tbody tr:hover {
   background-color: #f1f1f1;
 }
 
-/* AÇÕES */
+/* AÇÕES - Layout dos botões um abaixo do outro */
+.table td.acoes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem; /* Espaço entre os botões */
+}
+
+/* Botões de ação */
 .table td button {
-  padding: 0.4rem 0.8rem;
-  margin: 0 0.2rem;
+  width: 100%; /* Faz os botões ocuparem toda a largura da célula */
+  max-width: 140px;
+  padding: 0.5rem 0.8rem;
   font-size: 0.9rem;
   border: none;
   border-radius: 6px;
@@ -137,26 +149,111 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.table td button.edit {
-  background-color: #3baea0;
+/* Estilo individual dos botões */
+.table td button.salvar {
+  background-color: #28a745;
   color: white;
 }
 
-.table td button.edit:hover {
-  background-color: #329e91;
+.table td button.salvar:hover {
+  background-color: #218838;
 }
 
-.table td button.delete {
-  background-color: #dc3545;
+.table td button.animais {
+  background-color: #007bff;
   color: white;
 }
 
-.table td button.delete:hover {
-  background-color: #bb2d3b;
+.table td button.animais:hover {
+  background-color: #0069d9;
 }
 
+.table td button.novo-agendamento,
+.table td button.ver-agendamentos {
+  background-color: #ffc107;
+  color: #1a1a1a;
+}
+
+.table td button.novo-agendamento:hover,
+.table td button.ver-agendamentos:hover {
+  background-color: #e0a800;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-responsive table {
+  width: 100%;
+  min-width: 600px;
+}
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.table td input[type="text"] {
+  width: 100%;
+  max-width: 250px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: left;
+}
 /* RESPONSIVO */
 @media (max-width: 768px) {
+   body {
+    display: block;
+  }
+ body {
+    padding: 0;
+  }
+  .nav-container {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  .table td.acoes button {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+  }
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #1f6f78;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+ #logoutBtn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+  }
   .container {
     padding: 1rem;
   }
@@ -167,6 +264,11 @@ body {
 
   .table {
     font-size: 0.85rem;
+  }
+  .table td input[type="text"] {
+    max-width: 180px;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.5rem;
   }
 
   .table td,
