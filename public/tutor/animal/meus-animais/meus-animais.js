@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       signOut(auth)
         .then(() => {
           alert("Logout realizado com sucesso.");
-          window.location.href = "../../login/logintutor.html";
+          window.location.href = "../../../login/logintutor.html";
         })
         .catch((error) => {
           console.error("Erro ao fazer logout:", error);

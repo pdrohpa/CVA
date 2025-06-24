@@ -10,11 +10,11 @@ import {
   onAuthStateChanged,
   signOut,
   updatePassword,
-  EmailAuthProvider, // Importar para reautenticação
-  reauthenticateWithCredential, // Importar para reautenticação
+  EmailAuthProvider, 
+  reauthenticateWithCredential, 
 } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js";
 
-// Firebase Config
+
 const firebaseConfig = {
   apiKey: "AIzaSyBTghhMKFHgiWtumkLdjlyuohlR__yzEag",
   authDomain: "cva-controle-de-vac-de-animais.firebaseapp.com",
@@ -44,7 +44,7 @@ const logoutBtn = document.getElementById("logoutBtn");
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    window.location.href = "../../login/loginfunc.html";
+    window.location.href = "../../login/loginfuncionario.html";
     return;
   }
 
