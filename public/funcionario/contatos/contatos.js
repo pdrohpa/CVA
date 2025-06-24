@@ -25,53 +25,11 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
 
-const tabela = document.getElementById("tabela-contatos");
-
-document.addEventListener('DOMContentLoaded', function() {
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.querySelector('.nav-links');
-  const logoutBtn = document.getElementById('logoutBtn');
-
-  if (menuToggle) {
-    menuToggle.addEventListener('click', function() {
-      navLinks.classList.toggle('show');
-    });
-  }
-
-logoutBtn.addEventListener("click", () => {
-  signOut(auth)
-    .then(() => {
-      alert("Logout realizado com sucesso.");
-      window.location.href = "../../login/loginfuncionario.html";
-    })
-    .catch((error) => {
-      console.error("Erro ao fazer logout:", error);
-      alert("Erro ao sair. Tente novamente.");
-    });
-});
-
-onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    alert("Você precisa estar logado.");
-    window.location.href = "../../login/loginfuncionario.html";
-    return;
-  }
-
-  get(ref(database, "usuarios/" + user.uid)).then((snapshot) => {
-    const dados = snapshot.val();
-    if (dados?.funcao === "funcionario") {
-      carregarContatos();
-    } else {
-      alert("Apenas funcionários podem acessar esta página.");
-      window.location.href = "../../login/loginfuncionario.html";
-    }
-  });
-});
-
 function carregarContatos() {
   get(ref(database, "contatos"))
     .then((snapshot) => {
       const contatos = snapshot.val();
+      const tabela = document.getElementById("tabela-contatos");
       if (!contatos) {
         tabela.innerHTML =
           "<tr><td colspan='6'>Nenhum contato encontrado</td></tr>";
@@ -111,13 +69,15 @@ function carregarContatos() {
         }
 
         linha.innerHTML = `
-          <td>${contato.nome}</td>
-          <td>${contato.email}</td>
-          <td>${contato.mensagem}</td>
-          <td>${new Date(contato.dataHora).toLocaleString("pt-BR")}</td>
-          <td>${contato.telefone || "-"}</td>
-          <td></td>
-        `;
+                    <td>${contato.nome}</td>
+                    <td>${contato.email}</td>
+                    <td>${contato.mensagem}</td>
+                    <td>${new Date(contato.dataHora).toLocaleString(
+                      "pt-BR"
+                    )}</td>
+                    <td>${contato.telefone || "-"}</td>
+                    <td></td>
+                `;
 
         linha.children[5].appendChild(botaoExcluir);
         linha.children[5].appendChild(document.createTextNode(" "));
@@ -128,6 +88,7 @@ function carregarContatos() {
     })
     .catch((error) => {
       console.error("Erro ao carregar contatos:", error);
+      const tabela = document.getElementById("tabela-contatos");
       tabela.innerHTML =
         "<tr><td colspan='6'>Erro ao carregar contatos</td></tr>";
     });
@@ -143,3 +104,48 @@ function excluirContato(contatoId) {
       alert("Erro ao excluir contato: " + error.message);
     });
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const tabela = document.getElementById("tabela-contatos");
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.querySelector(".nav-links");
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  if (menuToggle) {
+    menuToggle.addEventListener("click", function () {
+      navLinks.classList.toggle("show");
+    });
+  }
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      signOut(auth)
+        .then(() => {
+          alert("Logout realizado com sucesso.");
+          window.location.href = "../../login/loginfuncionario.html";
+        })
+        .catch((error) => {
+          console.error("Erro ao fazer logout:", error);
+          alert("Erro ao sair. Tente novamente.");
+        });
+    });
+  }
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      alert("Você precisa estar logado.");
+      window.location.href = "../../login/loginfuncionario.html";
+      return;
+    }
+
+    get(ref(database, "usuarios/" + user.uid)).then((snapshot) => {
+      const dados = snapshot.val();
+      if (dados?.funcao === "funcionario") {
+        carregarContatos();
+      } else {
+        alert("Apenas funcionários podem acessar esta página.");
+        window.location.href = "../../login/loginfuncionario.html";
+      }
+    });
+  });
+});

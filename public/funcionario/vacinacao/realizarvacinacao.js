@@ -90,10 +90,10 @@ vacinaSelect.addEventListener("change", () => {
   if (selecionada) {
     const tipoNome = tipos[selecionada.tipoVacina]?.nome || "Desconhecido";
     infoVacina.innerHTML = `
-        <p><strong>Nome:</strong> ${tipoNome}</p>
-        <p><strong>Lote:</strong> ${selecionada.lote}</p>
-        <p><strong>Validade:</strong> ${selecionada.validade}</p>
-      `;
+            <p><strong>Nome:</strong> ${tipoNome}</p>
+            <p><strong>Lote:</strong> ${selecionada.lote}</p>
+            <p><strong>Validade:</strong> ${selecionada.validade}</p>
+            `;
   } else {
     infoVacina.innerHTML = "";
   }
@@ -107,7 +107,28 @@ botaoConfirmar.addEventListener("click", async () => {
   }
 
   const vacina = vacinas[idVacina];
+  if (!vacina) {
+    alert("Erro: Dados da vacina selecionada não encontrados.");
+    return;
+  }
   const tipoNome = tipos[vacina.tipoVacina]?.nome || "Desconhecido";
+
+  if (!auth.currentUser || !auth.currentUser.uid) {
+    alert("Erro de autenticação: Usuário não logado ou UID inválido.");
+    window.location.href = "../../login/loginvet.html";
+    return;
+  }
+
+  if (
+    !dadosVeterinario ||
+    typeof dadosVeterinario !== "object" ||
+    !dadosVeterinario.nome
+  ) {
+    alert(
+      "Erro: Dados do perfil do veterinário estão incompletos ou não foram carregados. Recarregue a página e tente novamente."
+    );
+    return;
+  }
 
   const agora = new Date();
 
@@ -130,7 +151,6 @@ botaoConfirmar.addEventListener("click", async () => {
     alert("Vacinação registrada com sucesso!");
     window.location.href = `../animais/visualizar.html?uidTutor=${uidTutor}&idAnimal=${idAnimal}`;
   } catch (error) {
-    console.error(error);
-    alert("Erro ao registrar vacinação.");
+    alert("Erro ao registrar vacinação: " + error.message);
   }
 });

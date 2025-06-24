@@ -6,22 +6,22 @@
     <title>Agendamento</title>
     <link rel="stylesheet" href="css/agendamento.css" />
   </head>
-<body class="bg-light">
-<nav class="navbar">
-  <div class="nav-container">
-    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
-      &#9776;
-    </button>
+  <body class="bg-light">
+    <nav class="navbar">
+      <div class="nav-container">
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+          &#9776;
+        </button>
 
-    <ul class="nav-links" id="nav-links">
-      <li><a href="../telainicial.html">Início</a></li>
-      <li><a href="../animal/meus-animais.html">Meus Animais</a></li>
-      <li><a href="visualizaragendamentos.html">Meus Agendamentos</a></li>
-    </ul>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="../telainicial.html">Início</a></li>
+          <li><a href="../animal/meus-animais.html">Meus Animais</a></li>
+          <li><a href="visualizaragendamentos.html">Meus Agendamentos</a></li>
+        </ul>
 
-    <button id="logoutBtn">Sair</button>
-  </div>
-</nav>
+        <button id="logoutBtn">Sair</button>
+      </div>
+    </nav>
 
     <div class="container d-flex justify-content-center px-3 mt-4">
       <div
@@ -30,17 +30,17 @@
       >
         <h2 class="mb-3 text-center">Agendamento</h2>
         <form id="form-agendamento">
-          <div class="mb-3 d-flex flex-column gap-2">
-            <label for="vacina" class="form-label">Vacina:</label>
-            <select id="vacina" class="form-select" required>
-              <option value="">Selecione uma vacina</option>
-            </select>
-          </div>
-
           <div class="mb-3">
             <label for="animal" class="form-label">Animal:</label>
             <select id="animal" class="form-select" required>
               <option value="">Selecione um animal</option>
+            </select>
+          </div>
+
+          <div class="mb-3 d-flex flex-column gap-2">
+            <label for="vacina" class="form-label">Vacina:</label>
+            <select id="vacina" class="form-select" required>
+              <option value="">Selecione uma vacina</option>
             </select>
           </div>
 
@@ -74,7 +74,7 @@
         <div id="redirecionamento" class="mt-4"></div>
       </div>
     </div>
-<footer class="footer"> 
+    <footer class="footer">
       <small>&copy; 2025 - CVA. Todos os direitos reservados.</small>
     </footer>
 
