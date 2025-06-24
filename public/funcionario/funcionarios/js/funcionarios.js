@@ -32,6 +32,12 @@ const auth = getAuth(app);
 const listaFuncionarios = document.getElementById("listaFuncionarios");
 const formFuncionario = document.getElementById("formFuncionario");
 const btnCancelar = document.getElementById("btnCancelar");
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', function() {
+  navLinks.classList.toggle('show');
+});
 
 const inputId = document.getElementById("funcionarioId");
 const inputNome = document.getElementById("nome");
