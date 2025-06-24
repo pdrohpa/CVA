@@ -29,6 +29,12 @@ const uidTutor = params.get("uidTutor");
 const idAnimal = params.get("idAnimal");
 
 const logoutBtn = document.getElementById("logoutBtn");
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("nav-links");
+
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("show");
+});
 
 logoutBtn.addEventListener("click", () => {
   signOut(auth)

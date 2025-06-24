@@ -27,7 +27,16 @@ const auth = getAuth(app);
 
 const tabela = document.getElementById("tabela-contatos");
 
-const logoutBtn = document.getElementById("logoutBtn");
+document.addEventListener('DOMContentLoaded', function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.querySelector('.nav-links');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  if (menuToggle) {
+    menuToggle.addEventListener('click', function() {
+      navLinks.classList.toggle('show');
+    });
+  }
 
 logoutBtn.addEventListener("click", () => {
   signOut(auth)

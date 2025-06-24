@@ -33,6 +33,14 @@ const db = getDatabase(app);
 const form = document.getElementById("form-editar-funcionario");
 const mensagem = document.getElementById("mensagem");
 const logoutBtn = document.getElementById("logoutBtn");
+ document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      menuToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('show');
+      });
+    });
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {

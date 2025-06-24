@@ -31,6 +31,12 @@ const campoBusca = document.getElementById("busca");
 let listaCompleta = [];
 
 const logoutBtn = document.getElementById("logoutBtn");
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', function() {
+  navLinks.classList.toggle('show');
+});
 
 logoutBtn.addEventListener("click", () => {
   signOut(auth)
@@ -131,20 +137,16 @@ onAuthStateChanged(auth, async (user) => {
         const tr = document.createElement("tr");
 
         tr.innerHTML = `
-          <td><input type="text" class="form-control" id="nome-${uid}" value="${
-          tutor.nome || ""
-        }"></td>
-          <td>${tutor.email || "Não informado"}</td>
-          <td><input type="text" class="form-control" id="telefone-${uid}" value="${
-          tutor.telefone || ""
-        }"></td>
-          <td>
-            <button class="btn btn-success btn-sm mb-1" onclick="salvarEdicao('${uid}')">Salvar</button><br/>
-            <button class="btn btn-primary btn-sm mb-1" onclick="verAnimais('${uid}')">Animais</button><br/>
-            <button class="btn btn-warning btn-sm mb-1" onclick="novoAgendamento('${uid}')">Novo Agendamento</button><br/>
-            <button class="btn btn-warning btn-sm mb-1" onclick="verAgendamentos('${uid}')">Ver Agendamentos</button>
-         </td>
-        `;
+  <td><input type="text" class="form-control" id="nome-${uid}" value="${tutor.nome || ""}"></td>
+  <td>${tutor.email || "Não informado"}</td>
+  <td><input type="text" class="form-control" id="telefone-${uid}" value="${tutor.telefone || ""}"></td>
+  <td class="acoes">
+    <button class="salvar" onclick="salvarEdicao('${uid}')">Salvar</button>
+    <button class="animais" onclick="verAnimais('${uid}')">Animais</button>
+    <button class="novo-agendamento" onclick="novoAgendamento('${uid}')">Novo Agendamento</button>
+    <button class="ver-agendamentos" onclick="verAgendamentos('${uid}')">Ver Agendamentos</button>
+  </td>
+`;
 
         tabelaTutores.appendChild(tr);
       });
