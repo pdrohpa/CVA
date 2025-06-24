@@ -1,32 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login como Funcionário</title>
 
-    <link   rel="stylesheet"  href="css/loginfuncionario.css" />
+    <link rel="stylesheet" href="css/loginfuncionario.css" />
 
-   
     <script defer src="/__/firebase/9.8.1/firebase-app-compat.js"></script>
     <script defer src="/__/firebase/9.8.1/firebase-auth-compat.js"></script>
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-
   </head>
   <body>
     <nav class="navbar">
-  <div class="nav-container">
-    <ul class="nav-links">
-      <li><a href="../index.html">Início</a></li>
-      <li><a href="../sobre.html">Sobre</a></li>
-      <li><a href="../contato.html">Contato</a></li>
-    </ul>
-  </div>
-</nav>
+      <div class="nav-container">
+        <ul class="nav-links">
+          <li><a href="../index.html">Início</a></li>
+          <li><a href="../sobre.html">Sobre</a></li>
+          <li><a href="../contato.html">Contato</a></li>
+        </ul>
+      </div>
+    </nav>
 
-     <main class="container">
-    <div class="login-card">
+    <main class="container">
+      <div class="login-card">
         <h2 class="text-center mb-4">Login - Funcionário</h2>
 
         <div class="mb-3">
@@ -51,15 +48,12 @@
           <button class="btn btn-primary" id="authEmailSenha">Entrar</button>
         </div>
 
-        <div id="mensagem" class="mt-3 text-center text-danger">
-          <p id="mensagem"></p>
-        </div>
+        <div id="mensagem" class="mt-3 text-center text-danger"></div>
       </div>
-     </main>
+    </main>
     <footer class="text-center p-3 bg-light">
       <small>&copy; 2025 - CVA. Todos os direitos reservados.</small>
     </footer>
     <script type="module" src="js/loginfunc.js"></script>
-    
   </body>
 </html>

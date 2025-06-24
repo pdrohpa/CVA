@@ -6,63 +6,71 @@
     <title>Cadastrar Animal - CVA</title>
     <link rel="stylesheet" href="css/cadastraranimal.css" />
   </head>
-     <body class="bg-light">
+  <body class="bg-light">
     <div class="wrapper">
-<nav class="navbar">
-  <div class="nav-container">
-    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
-      &#9776;
-    </button>
+      <nav class="navbar">
+        <div class="nav-container">
+          <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+            &#9776;
+          </button>
 
-    <ul class="nav-links" id="nav-links">
-      <li><a href="../telainicial.html">Início</a></li>
-      <li><a href="../agendamento/agendamento.html">Fazer Agendamento</a></li>
-      <li><a href="../meus-animais/meus-animais.html">Meus Animais</a></li>
-    </ul>
+          <ul class="nav-links" id="nav-links">
+            <li><a href="../telainicial.html">Início</a></li>
+            <li>
+              <a href="../agendamento/agendamento.html">Fazer Agendamento</a>
+            </li>
+            <li>
+              <a href="../meus-animais/meus-animais.html">Meus Animais</a>
+            </li>
+          </ul>
 
-    <button id="logoutBtn">Sair</button>
-  </div>
-</nav>
+          <button id="logoutBtn">Sair</button>
+        </div>
+      </nav>
 
+      <main class="container">
+        <h2>Cadastrar Animal</h2>
 
-    <main class="container">
-  <h2>Cadastrar Animal</h2>
+        <form id="form-cadastrar-animal">
+          <div class="mb-3">
+            <label for="nome">Nome *</label>
+            <input type="text" id="nome" required />
+          </div>
 
-  <form id="form-cadastrar-animal">
-    <div class="mb-3">
-      <label for="nome">Nome *</label>
-      <input type="text" id="nome" required />
+          <div class="mb-3">
+            <label for="especie">Espécie *</label>
+            <select id="especie" required>
+              <option value="">Selecione uma espécie</option>
+              <option value="cachorro">Cachorro</option>
+              <option value="gato">Gato</option>
+              <option value="passaro">Pássaro</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="raca">Raça *</label>
+            <select id="raca" required>
+              <option value="">Selecione uma raça</option>
+            </select>
+            <input
+              type="text"
+              id="racaOutros"
+              placeholder="Digite a raça"
+              style="display: none"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="nascimento">Data de Nascimento</label>
+            <input type="date" id="nascimento" />
+          </div>
+
+          <button type="submit">Cadastrar Animal</button>
+        </form>
+
+        <div id="mensagem"></div>
+      </main>
     </div>
-
-    <div class="mb-3">
-      <label for="especie">Espécie *</label>
-      <select id="especie" required>
-        <option value="">Selecione uma espécie</option>
-        <option value="cachorro">Cachorro</option>
-        <option value="gato">Gato</option>
-        <option value="passaro">Pássaro</option>
-      </select>
-    </div>
-
-    <div class="mb-3">
-      <label for="raca">Raça *</label>
-      <select id="raca" required>
-        <option value="">Selecione uma raça</option>
-      </select>
-      <input type="text" id="racaOutros" placeholder="Digite a raça" style="display:none;">
-    </div>
-
-    <div class="mb-3">
-      <label for="nascimento">Data de Nascimento</label>
-      <input type="date" id="nascimento" />
-    </div>
-
-    <button type="submit">Cadastrar Animal</button>
-  </form>
-
-  <div id="mensagem"></div>
-</main>
-
 
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>

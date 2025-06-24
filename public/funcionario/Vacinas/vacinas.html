@@ -1,60 +1,69 @@
-  <!DOCTYPE html>
-  <html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vacinas</title>
     <link rel="stylesheet" href="vacinas.css" />
-    
   </head>
- 
-      <body class="bg-light">
-     <nav class="navbar">
-     <div class="nav-container">
-  <button class="menu-toggle" id="menuToggle">&#9776; </button>
-    <ul class="nav-links">
-      <li><a href="../telainicial.html">Início</a></li>
-      <li><a  href="../tutores/tutores.html">Tutores</a></li>
-      <li><a href="../agendamentos/agendamentos.html">Agendamentos</a></li>
-      <li><a href="../animais/animais.html">Animais</a></li>
-      <li><a href="../funcionarios/funcionarios.html">Funcionário</a><li></li>
-    </ul>
-    <button id="logoutBtn">Sair</button>
-  </div>
-  </nav>
 
-    <div class="container my-5">
+  <body class="bg-light">
+    <nav class="navbar">
+      <div class="nav-container">
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+          &#9776;
+        </button>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="../telainicial.html">Início</a></li>
+          <li><a href="../tutores/tutores.html">Tutores</a></li>
+          <li><a href="../agendamentos/agendamentos.html">Agendamentos</a></li>
+          <li><a href="../animais/animais.html">Animais</a></li>
+
+          <li><a href="../funcionarios/funcionarios.html">Funcionário</a></li>
+        </ul>
+
+        <button id="logoutBtn">Sair</button>
+      </div>
+    </nav>
+
+    <main class="container my-5">
       <h2 class="text-center mb-4">Gerenciamento de Vacinas</h2>
 
-      
-  <main class="container d-flex justify-content-center px-3 mt-5">
-        <div
-          class="card shadow-sm p-4 bg-white rounded w-100"
-          style="max-width: 500px"
-        >
-          <h2 class="mb-4 text-center" id="mensagem"></h2>
+      <div
+        class="card shadow-sm p-4 bg-white rounded w-100"
+        style="max-width: 500px"
+      >
+        <h2 class="mb-4 text-center" id="mensagem"></h2>
 
-          <div class="d-grid gap-3">
-            <a href="tiposdevacina/tiposdevacina.html" class="btn btn-primary btn-lg">
-              Tipos de Vacina
-            </a>
+        <div class="d-grid gap-3">
+          <a
+            href="tiposdevacina/tiposdevacina.html"
+            class="btn btn-primary btn-lg"
+          >
+            Tipos de Vacina
+          </a>
 
-            <a
-              href="adicionarvacina/adicionarvacina.html"
-              class="btn btn-primary btn-lg"
-            >
-              Adicionar Lote
-            </a>
-            <a
-              href="adicionarvacina/consultarvacinas.html"
-              class="btn btn-primary btn-lg"
-            >
-              Ver Vacinas Adicionadas
-            </a>
-          </div>
+          <a
+            href="adicionarvacina/adicionarvacina.html"
+            class="btn btn-primary btn-lg"
+          >
+            Adicionar Lote
+          </a>
+          <a
+            href="adicionarvacina/consultarvacinas.html"
+            class="btn btn-primary btn-lg"
+          >
+            Ver Vacinas Adicionadas
+          </a>
         </div>
-      </main>
+      </div>
+    </main>
+
+    <footer class="text-center p-3 bg-light">
+      <small>&copy; 2025 - CVA. Todos os direitos reservados.</small>
+    </footer>
 
     <script type="module" src="vacinas.js"></script>
   </body>
-  </html>
+</html>
