@@ -257,3 +257,46 @@ BEGIN
 END //
 DELIMITER ;
 SELECT email_existe('eduardo.ramos3@email.com');
+
+-- Trigger
+
+DELIMITER // 
+CREATE TRIGGER after_update_vacinacao_update_historico
+AFTER INSERT ON tb_vacinacao
+FOR EACH ROW
+BEGIN 
+ 
+ DECLARE  id_ani INT;
+  -- seleciona o id_animal para ser inserido na tabela de histórico 
+ SELECT id_animal INTO id_ani 
+ FROM tb_agendamento 
+ WHERE id_agendamento=new.agendamento;
+ 
+ -- insere na tabela histórico
+
+INSERT INTO tb_historico ( id_vacinacao, id_animal) VALUES (new.id_vacinacao, id_ani);
+
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER before_insert_vacinacao
+BEFORE INSERT ON tb_vacinacao
+FOR EACH ROW
+BEGIN
+   
+   DECLARE valid DATE;
+
+    -- Porcura a validade da vacina
+    SELECT validade INTO valid
+    FROM tb_vacina
+    WHERE id_vacina = NEW.id_vacina;
+
+    -- Verifica se está vencida e aparece erro se estiver vencida
+    IF NEW.data_aplicacao > valid THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Erro: Vacina vencida. Aplicação não permitida.';
+    END IF;
+END//
+DELIMITER ;
+
