@@ -260,24 +260,25 @@ SELECT email_existe('eduardo.ramos3@email.com');
 
 -- Trigger
 
-DELIMITER // 
-CREATE TRIGGER after_update_vacinacao_update_historico
-AFTER INSERT ON tb_vacinacao
+DELIMITER //
+
+CREATE TRIGGER after_insert_vacinacao_update_historico
+AFTER INSERT ON tb_vacinacao -- depois de um INSERT na tabela tb_vacinacao
 FOR EACH ROW
 BEGIN 
- 
- DECLARE  id_ani INT;
-  -- seleciona o id_animal para ser inserido na tabela de histórico 
- SELECT id_animal INTO id_ani 
- FROM tb_agendamento 
- WHERE id_agendamento=new.agendamento;
- 
- -- insere na tabela histórico
+    DECLARE id_ani INT;
 
-INSERT INTO tb_historico ( id_vacinacao, id_animal) VALUES (new.id_vacinacao, id_ani);
+    -- Seleciona o id_animal com base no agendamento da nova vacinação
+    SELECT id_animal INTO id_ani 
+    FROM tb_agendamento 
+    WHERE id_agendamento = NEW.id_agendamento;
 
-END //
+    -- Insere na tabela histórico
+    INSERT INTO tb_historico (id_vacinacao, id_animal) VALUES (NEW.id_vacinacao, id_ani);
+END//
+
 DELIMITER ;
+
 
 DELIMITER //
 CREATE TRIGGER before_insert_vacinacao
