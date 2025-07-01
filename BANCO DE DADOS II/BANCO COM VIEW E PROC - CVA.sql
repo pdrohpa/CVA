@@ -208,5 +208,52 @@ BEGIN
 END;
 //
 
+-- procedure 2
 DELIMITER ;
 CALL historico_vacinas_animal(3);
+DELIMITER //
+-- seleciona todos animais de um tutor especifico que for coloacado no parametro
+CREATE PROCEDURE listar_animais_por_tutor(IN id_tutor1 INT) -- insere como parâmetro o id_tutor que quero saber a lista de animais
+BEGIN
+    SELECT a.id_animal, a.nome, a.especie -- seleciona nome, especie e o id do animail
+    FROM tb_animal a JOIN tb_ani_tut an ON a.id_animal = an.id_animal
+    WHERE an.id_tutor = id_tutor1; -- porcura na o tabela tb_ani_tutor quais animais pertence ao tutor que foi inserido como parâmetro 
+END //
+DELIMITER ;
+CALL listar_animais_por_tutor(1);
+
+-- procedure 3
+DELIMITER //
+-- cadastra um novo agendamento recebendo como parametro o  id_animal, id_veterinario, horario e situação 
+CREATE PROCEDURE agendar_atendimento( IN id_veterinario1 INT, IN id_animal1 INT, IN horario1 DATETIME, IN situacao1 VARCHAR(10))
+
+BEGIN
+INSERT INTO tb_agendamento ( id_veterinario, id_animal, horario, situacao) -- insere automaticamente o valores do parâmetro na tabela de agendamento
+VALUES ( id_veterinario1, id_animal1, horario1, situacao1);
+
+END //
+DELIMITER ;
+
+CALL agendar_atendimento(2, 5, '2025-07-01 10:30:00', 'pendente');
+
+-- procedure 4
+DELIMITER //
+-- procura se um email já foi cadastrado
+CREATE FUNCTION email_existe(email1 VARCHAR(40)) -- insere como parâmetro o email que quero pesquisar
+RETURNS BOOLEAN -- returna TRUE caso já foi cadastrado e FALSE se não foi cadastrado
+DETERMINISTIC
+BEGIN
+    DECLARE totalp INT; -- variavel que armazena o total de vezes que aparece o email
+
+    SELECT COUNT(*) INTO totalp -- conta o total de vezes que aparece o email
+    FROM tb_tutor
+    WHERE email = email1; -- compara se o email da tabela tutor é igual ao email inserido no parâmetro da função
+
+    IF totalp > 0 THEN -- se o email já foi cadastrado, vai retornar verdadeiro
+	RETURN TRUE;
+    ELSE
+	RETURN FALSE; -- se o email  não foi cadastrado ainda , vai retornar falso
+    END IF;
+END //
+DELIMITER ;
+SELECT email_existe('eduardo.ramos3@email.com');
