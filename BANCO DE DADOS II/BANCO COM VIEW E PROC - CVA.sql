@@ -209,23 +209,8 @@ END;
 DELIMITER ;
 CALL historico_vacinas_animal(3);
 
-DELIMITER //
-CREATE PROCEDURE historico_vacinas_animal(IN p_id_animal INT)
-BEGIN
-    SELECT
-        a.nome AS 'Animal',
-        v.nome AS 'Vacina',
-        vac.data_aplicacao AS 'Data de Aplicação'
-    FROM tb_animal a
-    JOIN tb_agendamento ag ON ag.id_animal = a.id_animal
-    JOIN tb_vacinacao vac ON ag.id_agendamento = vac.id_agendamento
-    JOIN tb_vacina v ON vac.id_vacina = v.id_vacina
-    WHERE a.id_animal = p_id_animal;
-END;
-//
 
-DELIMITER ;
-CALL historico_vacinas_animal(3);
+
 DELIMITER //
 -- seleciona todos animais de um tutor especifico que for coloacado no parametro
 CREATE PROCEDURE listar_animais_por_tutor(IN id_tutor1 INT) -- insere como parâmetro o id_tutor que quero saber a lista de animais
@@ -285,7 +270,7 @@ BEGIN
   -- seleciona o id_animal para ser inserido na tabela de histórico 
  SELECT id_animal INTO id_ani 
  FROM tb_agendamento 
- WHERE id_agendamento=new.agendamento;
+ WHERE id_agendamento=new.id_agendamento;
  
  -- insere na tabela histórico
 
@@ -331,3 +316,4 @@ SET @id_animal := (
 INSERT INTO tb_historico (id_vacinacao, id_animal)
 VALUES (LAST_INSERT_ID(), @id_animal);
 COMMIT;
+
