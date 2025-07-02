@@ -101,7 +101,7 @@ CREATE TABLE tb_lancamento_vacina(
     FOREIGN KEY (id_vacina) REFERENCES tb_vacina(id_vacina)
 );
 
--- Views
+-- VIEW
 
 CREATE VIEW vw_historico_vacinacao AS
 SELECT
@@ -179,7 +179,6 @@ JOIN tb_veterinario v ON ag.id_veterinario = v.id_veterinario
 WHERE ag.situacao = 'pendente';
 SELECT * FROM vw_agendamentos_pendentes;
 
-
 CREATE VIEW vw_vacinas_aplicadas_por_veterinario AS
     SELECT
         v.nome AS 'Veterinário',
@@ -190,8 +189,7 @@ CREATE VIEW vw_vacinas_aplicadas_por_veterinario AS
     GROUP BY v.id_veterinario, v.nome;
 SELECT * FROM vw_vacinas_aplicadas_por_veterinario;
 
-
--- Procedures
+-- PROCEDURE
 
 DELIMITER //
 CREATE PROCEDURE historico_vacinas_animal(IN p_id_animal INT)
@@ -208,7 +206,24 @@ BEGIN
 END;
 //
 
--- procedure 2
+DELIMITER ;
+CALL historico_vacinas_animal(3);
+
+DELIMITER //
+CREATE PROCEDURE historico_vacinas_animal(IN p_id_animal INT)
+BEGIN
+    SELECT
+        a.nome AS 'Animal',
+        v.nome AS 'Vacina',
+        vac.data_aplicacao AS 'Data de Aplicação'
+    FROM tb_animal a
+    JOIN tb_agendamento ag ON ag.id_animal = a.id_animal
+    JOIN tb_vacinacao vac ON ag.id_agendamento = vac.id_agendamento
+    JOIN tb_vacina v ON vac.id_vacina = v.id_vacina
+    WHERE a.id_animal = p_id_animal;
+END;
+//
+
 DELIMITER ;
 CALL historico_vacinas_animal(3);
 DELIMITER //
@@ -258,27 +273,26 @@ END //
 DELIMITER ;
 SELECT email_existe('eduardo.ramos3@email.com');
 
--- Trigger
+-- TRIGGER
 
-DELIMITER //
-
-CREATE TRIGGER after_insert_vacinacao_update_historico
-AFTER INSERT ON tb_vacinacao -- depois de um INSERT na tabela tb_vacinacao
+DELIMITER // 
+CREATE TRIGGER after_update_vacinacao_update_historico
+AFTER INSERT ON tb_vacinacao
 FOR EACH ROW
 BEGIN 
-    DECLARE id_ani INT;
+ 
+ DECLARE  id_ani INT;
+  -- seleciona o id_animal para ser inserido na tabela de histórico 
+ SELECT id_animal INTO id_ani 
+ FROM tb_agendamento 
+ WHERE id_agendamento=new.agendamento;
+ 
+ -- insere na tabela histórico
 
-    -- Seleciona o id_animal com base no agendamento da nova vacinação
-    SELECT id_animal INTO id_ani 
-    FROM tb_agendamento 
-    WHERE id_agendamento = NEW.id_agendamento;
+INSERT INTO tb_historico ( id_vacinacao, id_animal) VALUES (new.id_vacinacao, id_ani);
 
-    -- Insere na tabela histórico
-    INSERT INTO tb_historico (id_vacinacao, id_animal) VALUES (NEW.id_vacinacao, id_ani);
-END//
-
+END //
 DELIMITER ;
-
 
 DELIMITER //
 CREATE TRIGGER before_insert_vacinacao
@@ -299,5 +313,21 @@ BEGIN
         SET MESSAGE_TEXT = 'Erro: Vacina vencida. Aplicação não permitida.';
     END IF;
 END//
+
 DELIMITER ;
 
+-- TRANSACTION
+
+START TRANSACTION;
+INSERT INTO tb_vacinacao (id_agendamento, id_vacina, data_aplicacao)
+VALUES (1, 2, '2025-07-02');
+
+SET @id_animal := (
+    SELECT id_animal
+    FROM tb_agendamento
+    WHERE id_agendamento = 1
+);
+
+INSERT INTO tb_historico (id_vacinacao, id_animal)
+VALUES (LAST_INSERT_ID(), @id_animal);
+COMMIT;
